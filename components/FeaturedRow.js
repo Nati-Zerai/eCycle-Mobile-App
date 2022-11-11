@@ -29,7 +29,7 @@ const FeaturedRow = ({id, title, description}) => {
                 rating={4.5}
                 genre="Japanese"
                 address="123 Main St"
-                short_description="This is short description"
+                short_description="This is short description. Open the app on your device, reveal the developer menu then tap on Debug JS Remotely."
                 dishes={[]}
                 long={20}
                 lat={0}
@@ -41,7 +41,7 @@ const FeaturedRow = ({id, title, description}) => {
                 rating={4.5}
                 genre="Japanese"
                 address="123 Main St"
-                short_description="This is short description"
+                short_description="This is short description. Open the app on your device, reveal the developer menu then tap on Debug JS Remotely."
                 dishes={[]}
                 long={20}
                 lat={0}
@@ -53,7 +53,7 @@ const FeaturedRow = ({id, title, description}) => {
                 rating={4.5}
                 genre="Japanese"
                 address="123 Main St"
-                short_description="This is short description"
+                short_description="This is short description. Open the app on your device, reveal the developer menu then tap on Debug JS Remotely."
                 dishes={[]}
                 long={20}
                 lat={0}
