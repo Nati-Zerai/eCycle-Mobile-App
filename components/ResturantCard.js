@@ -18,7 +18,7 @@ const ResturantCard = ({
   const navigation = useNavigation();
 
   return (
-    <TouchableOpacity 
+    <TouchableOpacity
       onPress={() =>{
         navigation.navigate("Resturant", {
           id,
@@ -32,13 +32,13 @@ const ResturantCard = ({
           lat,
         });
       }}
-      className="bg-white mr-3 shadow-md">
+      className="bg-white mr-3 h-80 w-96 shadow-md">
       <View style={{backgroundColor:"white", elevation: 2}}>
         <Image 
           source={{
               uri: imgUrl,
           }}
-          className="h-36 w-64 rounded-sm"
+          className="h-56 w-96 rounded-sm"
       />
       <View className="px-3">
         <Text className="font-bold text-lg pt-2">{title}</Text>

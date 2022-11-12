@@ -1,5 +1,5 @@
-import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
+import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { ArrowLeftIcon, ChevronRightIcon, MapPinIcon, QuestionMarkCircleIcon, StarIcon } from 'react-native-heroicons/outline';
 import DishRow from '../components/DishRow';
@@ -73,6 +73,20 @@ const ResturantScreen = () => {
             />
             <DishRow 
                 id={2}
+                name="Pizza"
+                description="Open the app on your device, reveal the developer menu."
+                price={300}
+                image="https://links.papareact.com/gn7"
+            />
+            <DishRow 
+                id={3}
+                name="Pizza"
+                description="Open the app on your device, reveal the developer menu."
+                price={300}
+                image="https://links.papareact.com/gn7"
+            />
+            <DishRow 
+                id={3}
                 name="Pizza"
                 description="Open the app on your device, reveal the developer menu."
                 price={300}

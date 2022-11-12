@@ -24,8 +24,8 @@ const FeaturedRow = ({id, title, description}) => {
             {/* ResturantCards */}
             <ResturantCard 
                 id={123}
-                imgUrl="https://links.papareact.com/gn7"
-                title="Yo! Sushi"
+                imgUrl="https://www.veracityworld.com/wp-content/uploads/2017/08/sell-old-electronics.jpg"
+                title="Alarming increase of e-waste"
                 rating={4.5}
                 genre="Japanese"
                 address="123 Main St"
@@ -36,8 +36,8 @@ const FeaturedRow = ({id, title, description}) => {
             /> 
             <ResturantCard 
                 id={123}
-                imgUrl="https://links.papareact.com/gn7"
-                title="Yo! Sushi"
+                imgUrl="https://www.worldfutureenergysummit.com/content/dam/sitebuilder/rxae/worldfutureenergysummit/2021/waste/EcoWASTE-Learn-1.jpg/_jcr_content/renditions/original.image_file.592.355.file/922963040/EcoWASTE-Learn-1.jpg"
+                title="UAE conference discussion about e-waste"
                 rating={4.5}
                 genre="Japanese"
                 address="123 Main St"
@@ -48,8 +48,8 @@ const FeaturedRow = ({id, title, description}) => {
             /> 
             <ResturantCard 
                 id={123}
-                imgUrl="https://links.papareact.com/gn7"
-                title="Yo! Sushi"
+                imgUrl="https://www.veracityworld.com/wp-content/uploads/2017/08/sell-old-electronics.jpg"
+                title="Alarming increase of e-waste"
                 rating={4.5}
                 genre="Japanese"
                 address="123 Main St"
