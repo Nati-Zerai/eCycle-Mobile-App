@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 import React from 'react'
 
-const CategoryCard = ({imgUrl, title}) => {
+const ContributorCard = ({imgUrl, title}) => {
   return (
     <TouchableOpacity className="items-center  mr-2">
         <Image 
@@ -15,4 +15,4 @@ const CategoryCard = ({imgUrl, title}) => {
   )
 }
 
-export default CategoryCard
+export default ContributorCard
