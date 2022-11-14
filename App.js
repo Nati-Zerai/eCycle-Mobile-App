@@ -8,6 +8,12 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ActionScreen from "./screens/ActionScreen";
 import { SafeAreaView } from "react-native";
 import Footer from "./components/Footer";
+import UserProfileScreen from './screens/UserProfileScreen';
+import SettingsScreen from "./screens/SettingsScreen";
+import DeliveryAddressScreen from "./screens/DeliveryAddressScreen";
+import WalletScreen from "./screens/WalletScreen";
+import ConfigureSettingsScreen from "./screens/ConfigureSettingsScreen";
+
 
 const Tab = createBottomTabNavigator();
 
@@ -22,6 +28,13 @@ export default function App() {
           <Stack.Screen name="Updates" component={UpdatesScreen} />
           <Stack.Screen name="Resturant" component={ResturantScreen} />
           <Stack.Screen name="Action" component={ActionScreen} />
+          <Stack.Screen name="UserProfile" component={UserProfileScreen} />
+          <Stack.Screen name="Settings" component={SettingsScreen} />
+          <Stack.Screen name="DeliveryAddress" component={DeliveryAddressScreen} />
+          <Stack.Screen name="Wallet" component={WalletScreen} />
+          <Stack.Screen name="ConfigureSettings" component={ConfigureSettingsScreen} />
+
+
         </Stack.Navigator>
 
         {/* <Tab.Navigator>

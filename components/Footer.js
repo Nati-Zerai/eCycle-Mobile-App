@@ -55,7 +55,7 @@ const Footer = ({
       </TouchableOpacity>
 
       <TouchableOpacity
-        onPress={() => [setActiveTab("Bar"), navigation.navigate("Action")]}
+        onPress={() => [setActiveTab("Bar"), navigation.navigate("Settings")]}
       >
         <Bars3Icon
           size={34}

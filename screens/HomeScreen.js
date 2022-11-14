@@ -6,8 +6,12 @@ import { ArrowRightCircleIcon, MapPinIcon } from "react-native-heroicons/solid";
 import Contributor from "../components/Contributor";
 import UpdatesRow from "../components/UpdatesRow";
 import ButtonsHome from "../components/ButtonsHome";
+import { useNavigation } from "@react-navigation/native";
+
 
 const HomeScreen = () => {
+  const navigation = useNavigation()
+
   return (
     <View className="mb-40">
       <View className="bg-[#7cc464] pt-12 flex-row pb-3 items-center space-x-2 px-4">
@@ -20,7 +24,10 @@ const HomeScreen = () => {
         <View className="flex-1">
           <Text className="font-bold text-white text-2xl mr-2">eCycle</Text>
         </View>
-        <UserIcon size={30} color="#ffffff" />
+        <TouchableOpacity
+            onPress={() => navigation.navigate("UserProfile")}>
+            <UserIcon size={30} color="#ffffff"/>
+            </TouchableOpacity>
       </View>
       {/* Pick Up */}
       <TouchableOpacity className="bg-white mx-5 my-2 p-2 rounded-3xl">

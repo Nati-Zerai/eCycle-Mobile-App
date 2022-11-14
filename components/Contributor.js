@@ -20,15 +20,14 @@ const Contributor = () => {
     >
     {/* Category Card */}
     <ContributorCard imgUrl="https://cdn-icons-png.flaticon.com/512/180/180658.png" title="George"/>
-    <ContributorCard imgUrl="https://cdn-icons-png.flaticon.com/512/3006/3006872.png" title="Jerry"/>
-    <ContributorCard imgUrl="https://cdn-icons-png.flaticon.com/512/921/921110.png" title="Floyd"/>
+    <ContributorCard imgUrl="https://cdn1.iconfinder.com/data/icons/bokbokstars-121-classic-stock-icons-1/512/person-man.png" title="Jerry"/>
+    <ContributorCard imgUrl="https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/256x256/delivery_man.png" title="Floyd"/>
     <ContributorCard imgUrl="https://cdn-icons-png.flaticon.com/512/180/180658.png" title="George"/>
-    <ContributorCard imgUrl="https://cdn-icons-png.flaticon.com/512/3006/3006872.png" title="Jerry"/>
-    <ContributorCard imgUrl="https://cdn-icons-png.flaticon.com/512/921/921110.png" title="Floyd"/>
+    <ContributorCard imgUrl="https://cdn1.iconfinder.com/data/icons/bokbokstars-121-classic-stock-icons-1/512/person-man.png" title="Jerry"/>
+    <ContributorCard imgUrl="https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/256x256/delivery_man.png" title="Floyd"/>
     <ContributorCard imgUrl="https://cdn-icons-png.flaticon.com/512/180/180658.png" title="George"/>
-    <ContributorCard imgUrl="https://cdn-icons-png.flaticon.com/512/3006/3006872.png" title="Jerry"/>
-    <ContributorCard imgUrl="https://cdn-icons-png.flaticon.com/512/921/921110.png" title="Floyd"/>
-
+    <ContributorCard imgUrl="https://cdn1.iconfinder.com/data/icons/bokbokstars-121-classic-stock-icons-1/512/person-man.png" title="Jerry"/>
+    <ContributorCard imgUrl="https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/256x256/delivery_man.png" title="Floyd"/>
     </ScrollView>
     </View>
 

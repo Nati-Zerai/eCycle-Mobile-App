@@ -6,7 +6,7 @@ import {
   SafeAreaView,
   ScrollView,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import {
   ArrowRightIcon,
@@ -15,9 +15,11 @@ import {
 } from "react-native-heroicons/outline";
 import SearchFilter from "../components/SearchFilter";
 import DevicesColumn from "../components/DevicesColumn";
+import SearchFilterCard from "../components/SearchFilterCards";
 
 const ActionScreen = () => {
   const navigation = useNavigation();
+  const [selected, setSelected] = useState("")
 
   return (
     <View className="mb-40">
@@ -49,7 +51,21 @@ const ActionScreen = () => {
 
       <SafeAreaView>
         {/* Search Filter */}
-        <SearchFilter />
+        {/* <SearchFilter /> This works*/}
+        <ScrollView
+              contentContainerStyle={{
+                paddingHorizontal: 15,
+                paddingTop: 10,
+              }}
+              horizontal
+              showsHorizontalScrollIndicator={false}>
+        <SearchFilterCard title="Laptop" />
+        <SearchFilterCard title="Phones" />
+        <SearchFilterCard title="Tablet" />
+        <SearchFilterCard title="Laptop" />
+        <SearchFilterCard title="Phones" />
+        <SearchFilterCard title="Tablet" />
+        </ScrollView>
       </SafeAreaView>
       <ScrollView>
         <View className="flex-row items-center justify-between mt-1 px-4">
@@ -82,7 +98,7 @@ const ActionScreen = () => {
         />
       </ScrollView>
 
-      <Text onPress={navigation.goBack}>samplePage</Text>
+      <Text onPress={navigation.goBack}>hi</Text>
     </View>
   );
 };
