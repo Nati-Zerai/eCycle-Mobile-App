@@ -13,6 +13,8 @@ import SettingsScreen from "./screens/SettingsScreen";
 import DeliveryAddressScreen from "./screens/DeliveryAddressScreen";
 import WalletScreen from "./screens/WalletScreen";
 import ConfigureSettingsScreen from "./screens/ConfigureSettingsScreen";
+import FillDeviceInfoScreen from "./screens/FillDeviceInfoScreen";
+import CartScreen from "./screens/CartScreen";
 
 
 const Tab = createBottomTabNavigator();
@@ -30,31 +32,27 @@ export default function App() {
           <Stack.Screen name="Action" component={ActionScreen} />
           <Stack.Screen name="UserProfile" component={UserProfileScreen} />
           <Stack.Screen name="Settings" component={SettingsScreen} />
-          <Stack.Screen name="DeliveryAddress" component={DeliveryAddressScreen} />
+          <Stack.Screen
+            name="DeliveryAddress"
+            component={DeliveryAddressScreen}
+          />
           <Stack.Screen name="Wallet" component={WalletScreen} />
-          <Stack.Screen name="ConfigureSettings" component={ConfigureSettingsScreen} />
-
-
+          <Stack.Screen
+            name="ConfigureSettings"
+            component={ConfigureSettingsScreen}
+          />
+          <Stack.Screen
+            name="FillDeviceInfo"
+            component={FillDeviceInfoScreen}
+          />
+          <Stack.Screen name="Cart" component={CartScreen} />
         </Stack.Navigator>
 
         {/* <Tab.Navigator>
           <Tab.Screen name="Home" component={HomeScreen} />
           <Tab.Screen name="Updates" component={UpdatesScreen} />
         </Tab.Navigator> */}
-        <SafeAreaView>
-          <Footer
-            id={123}
-            imgUrl="https://www.worldfutureenergysummit.com/content/dam/sitebuilder/rxae/worldfutureenergysummit/2021/waste/EcoWASTE-Learn-1.jpg/_jcr_content/renditions/original.image_file.592.355.file/922963040/EcoWASTE-Learn-1.jpg"
-            title="UAE conference discussion"
-            rating="12 / 23 / 2022"
-            genre="Meeting"
-            address="Abu Dhabi, UAE"
-            short_description="This is short description. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Open the app on your device, reveal the developer menu then tap on Debug JS Remotely.Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-            dishes={[]}
-            long={20}
-            lat={0}
-          />
-        </SafeAreaView>
+        <Footer />
       </TailwindProvider>
     </NavigationContainer>
   );

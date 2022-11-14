@@ -5,7 +5,7 @@ const DashboardItems = ({title,value}) => {
   return (
     <View>
       <View className="flex items-center">
-                <Text className="text-xl font-bold text-black">{title}</Text>
+                <Text className="text-xl font-medium text-black">{title}</Text>
                 <Text className="text-base text-black">{value}</Text>
             </View>
     </View>

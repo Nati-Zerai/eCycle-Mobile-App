@@ -6,10 +6,10 @@ const SearchFilterCard = ({ title }) => {
   const [pressed, setPressed] = useState(false);
   const [touched, setTouched] = useState(false);
 
-console.log(activeFilter)
-console.log("--------")
-console.log(title)
-console.log("############")
+// console.log(activeFilter)
+// console.log("--------")
+// console.log(title)
+// console.log("############")
 
   return (
 <>

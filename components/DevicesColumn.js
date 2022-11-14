@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { ChevronRightIcon, StarIcon } from "react-native-heroicons/outline";
+import { useNavigation } from "@react-navigation/native";
 
 const DevicesColumn = ({
   id,
@@ -10,8 +11,21 @@ const DevicesColumn = ({
   genre,
   short_description,
 }) => {
+  const navigation = useNavigation();
+
   return (
-    <TouchableOpacity className="flex-row bg-white rounded-xl my-2 ml-5 mr-5">
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate("FillDeviceInfo", {
+          id,
+          imgUrl,
+          title,
+          rating,
+          short_description,
+        });
+      }}
+      className="flex-row bg-white rounded-xl my-2 ml-5 mr-5"
+    >
       <View className="flex-row flex-1">
         <Image
           source={{

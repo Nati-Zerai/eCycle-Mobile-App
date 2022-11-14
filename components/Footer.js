@@ -35,17 +35,7 @@ const Footer = ({
       <TouchableOpacity
         onPress={() => [
           setActiveTab("Cart"),
-          navigation.navigate("Updates", {
-            id,
-            imgUrl,
-            title,
-            rating,
-            genre,
-            address,
-            short_description,
-            long,
-            lat,
-          }),
+          navigation.navigate("Cart"),
         ]}
       >
         <ShoppingCartIcon
