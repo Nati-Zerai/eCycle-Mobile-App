@@ -26,7 +26,6 @@ const FillDeviceInfoScreen = () => {
     { key: "4", value: "Out of use" },
   ];
 
-
   return (
     <ScrollView>
       <View className="relative">
@@ -70,18 +69,22 @@ const FillDeviceInfoScreen = () => {
         <View className="pb-2 px-4">
           <Text className="mb-1">Heath Condition</Text>
           {/* DropDown  */}
-          <SelectList
-            setSelected={(val) => setSelected(val)}
-            data={healthCondition}
-            save="value"
-          />
+          <View className="z-300">
+            <SelectList
+              setSelected={(val) => setSelected(val)}
+              data={healthCondition}
+              save="value"
+            />
+          </View>
         </View>
         <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Estimate");
+          }}
           className="self-center mx-4 mt-4 mb-4 px-8 py-3 rounded-2xl bg-[#7cc464]"
         >
           <Text className="text-base">Estimate</Text>
         </TouchableOpacity>
-
       </View>
     </ScrollView>
   );
