@@ -21,6 +21,7 @@ import {
   TransitionPresets,
 } from "@react-navigation/stack";
 import ContinueToCartScreen from "./screens/ContinueToCartScreen";
+import TrackScreen from "./screens/TrackScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -76,12 +77,9 @@ export default function App() {
               ...TransitionPresets.ModalPresentationIOS,
             }}
           />
+          <Stack.Screen name="Track" component={TrackScreen} />
         </Stack.Navigator>
 
-        {/* <Tab.Navigator>
-          <Tab.Screen name="Home" component={HomeScreen} />
-          <Tab.Screen name="Updates" component={UpdatesScreen} />
-        </Tab.Navigator> */}
         <Footer />
       </TailwindProvider>
     </NavigationContainer>

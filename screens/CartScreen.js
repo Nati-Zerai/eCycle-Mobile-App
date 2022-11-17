@@ -35,6 +35,20 @@ const CartScreen = () => {
       </View>
       {/* Main */}
       <ScrollView>
+        {/* Track button */}
+        <View className="p-5 bg-white space-y-4">
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Track");
+            }}
+            className="rounded-xl bg-white border-2  border-lime-500 p-4 mx-3"
+          >
+            <Text className="text-center text-[#7cc464] text-lg font-bold">
+              Track PickUp
+            </Text>
+          </TouchableOpacity>
+        </View>
+
         {/* When Cart is empty */}
         {/* <View className="flex-row items-center p-6 bg-white rounded-xl">
             <ShoppingCartIcon size={55} color="#7cc464"/>

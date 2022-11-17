@@ -45,14 +45,6 @@ const EstimateScreen = () => {
           <TouchableOpacity
             onPressIn={navigation.goBack}
             onPress={() => {
-              // navigation.navigate("FillDeviceInfo", {
-              //   id,
-              //   imgUrl,
-              //   title,
-              //   rating,
-              //   short_description,
-              // });
-              // navigation.goBack;
               navigation.navigate("ContinueToCart");
             }}
             className="rounded-2xl bg-[#7cc464] p-4 mx-3"
