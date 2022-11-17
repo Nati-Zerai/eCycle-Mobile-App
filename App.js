@@ -20,6 +20,7 @@ import {
   createStackNavigator,
   TransitionPresets,
 } from "@react-navigation/stack";
+import ContinueToCartScreen from "./screens/ContinueToCartScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -54,6 +55,18 @@ export default function App() {
           <Stack.Screen
             name="Estimate"
             component={EstimateScreen}
+            options={{
+              presentation: "transparentModal",
+              headerShown: false,
+              gestureEnabled: true,
+              gestureResponseDistance: 800,
+              cardOverlayEnabled: true,
+              ...TransitionPresets.ModalPresentationIOS,
+            }}
+          />
+          <Stack.Screen
+            name="ContinueToCart"
+            component={ContinueToCartScreen}
             options={{
               presentation: "transparentModal",
               headerShown: false,

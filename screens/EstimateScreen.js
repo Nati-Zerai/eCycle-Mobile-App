@@ -1,10 +1,12 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { XCircleIcon } from "react-native-heroicons/solid";
-import Currency from "react-currency-formatter";
 
 const EstimateScreen = () => {
   const navigation = useNavigation();
+  const {
+    params: { id, imgUrl, title, rating, short_description },
+  } = useRoute();
 
   return (
     <View className="absolute bottom-0 h-72 w-full flex-1 ">
@@ -41,7 +43,18 @@ const EstimateScreen = () => {
 
         <View className="p-5 bg-white space-y-4">
           <TouchableOpacity
-            onPress={() => navigation.navigate("FillDeviceInfo")}
+            onPressIn={navigation.goBack}
+            onPress={() => {
+              // navigation.navigate("FillDeviceInfo", {
+              //   id,
+              //   imgUrl,
+              //   title,
+              //   rating,
+              //   short_description,
+              // });
+              // navigation.goBack;
+              navigation.navigate("ContinueToCart");
+            }}
             className="rounded-2xl bg-[#7cc464] p-4 mx-3"
           >
             <Text className="text-center text-white text-lg font-bold">

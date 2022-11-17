@@ -79,7 +79,13 @@ const FillDeviceInfoScreen = () => {
         </View>
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("Estimate");
+            navigation.navigate("Estimate", {
+              id,
+              imgUrl,
+              title,
+              rating,
+              short_description,
+            });
           }}
           className="self-center mx-4 mt-4 mb-4 px-8 py-3 rounded-2xl bg-[#7cc464]"
         >
