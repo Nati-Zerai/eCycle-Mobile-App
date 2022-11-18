@@ -94,9 +94,14 @@ const CartScreen = () => {
         </View>
       </ScrollView>
       <View className="absolute bottom-0 flex w-full bg-gray-50">
-        <View className="items-center bg-[#7cc464] px-2 py-3 rounded-xl mx-4 my-3 ">
-          <Text className="font-bold text-xl ">CHECKOUT</Text>
-        </View>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Checkout");
+          }}
+          className="items-center bg-[#7cc464] px-2 py-3 rounded-xl mx-4 my-3 "
+        >
+          <Text className="font-semibold text-xl ">CHECKOUT</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );

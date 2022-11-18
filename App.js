@@ -22,6 +22,7 @@ import {
 } from "@react-navigation/stack";
 import ContinueToCartScreen from "./screens/ContinueToCartScreen";
 import TrackScreen from "./screens/TrackScreen";
+import CheckoutScreen from "./screens/CheckoutScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -78,6 +79,16 @@ export default function App() {
             }}
           />
           <Stack.Screen name="Track" component={TrackScreen} />
+          <Stack.Screen
+            name="Checkout"
+            component={CheckoutScreen}
+            options={{
+              headerShown: false,
+              gestureEnabled: true,
+              cardOverlayEnabled: true,
+              ...TransitionPresets.ModalPresentationIOS,
+            }}
+          />
         </Stack.Navigator>
 
         <Footer />
