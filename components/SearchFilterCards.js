@@ -1,10 +1,19 @@
-import { Text, TouchableOpacity, Image } from "react-native";
+import { Text, TouchableOpacity, Image, View } from "react-native";
 import React, { useState } from "react";
 
-const SearchFilterCard = ({ title }) => {
+const SearchFilterCard = ({ title, color, selector }) => {
   const [activeFilter, setActiveFilter] = useState("");
+  const defaultColor = "white"
   const [pressed, setPressed] = useState(false);
   const [touched, setTouched] = useState(false);
+
+  const [items, setitems] = useState([
+    { key: "1", type: "Laptop", color: "green"},
+    { key: "2", type: "Phone", color: "green"},
+    { key: "3", type: "TV", color: "#00ccbb"},
+    { key: "4", type: "Toy", color: "#00ccbb"},
+  ])
+
 
 // console.log(activeFilter)
 // console.log("--------")
@@ -13,7 +22,7 @@ const SearchFilterCard = ({ title }) => {
 
   return (
 <>
-    <TouchableOpacity
+    <View
       onPress={() => {
         setActiveFilter(title);
         setPressed(!pressed)
@@ -23,7 +32,7 @@ const SearchFilterCard = ({ title }) => {
     >
       <Text
         className={
-          activeFilter == title
+          (color == defaultColor && title == selector)
             ? "bg-[#7cc464] mx-1 p-2 px-3 rounded-3xl"
             : "bg-white mx-1 p-2 px-3 rounded-3xl"
         }
@@ -34,7 +43,7 @@ const SearchFilterCard = ({ title }) => {
     )} */}
       </Text>
       {/* {pressed & <Text>Hello2</Text>} */}
-    </TouchableOpacity>
+    </View>
     </>
   );
 };
