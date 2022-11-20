@@ -2,15 +2,15 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { ChevronRightIcon, StarIcon } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
+import { urlFor } from "../sanity";
 
 const DevicesColumn = ({
   id,
   imgUrl,
   title,
-  rating,
   genre,
-  estimatedPoint,
   short_description,
+  estimatedPoint,
 }) => {
   const navigation = useNavigation();
 
@@ -22,8 +22,8 @@ const DevicesColumn = ({
           imgUrl,
           title,
           genre,
-          estimatedPoint,
           short_description,
+          estimatedPoint,
         });
       }}
       className="flex-row bg-white rounded-xl my-2 ml-5 mr-5"
@@ -31,7 +31,7 @@ const DevicesColumn = ({
       <View className="flex-row flex-1">
         <Image
           source={{
-            uri: imgUrl,
+            uri: urlFor(imgUrl).url(),
           }}
           className="h-20 w-20 rounded-xl"
         />
@@ -39,7 +39,7 @@ const DevicesColumn = ({
           <Text className="font-bold text-lg">{title}</Text>
           <View className="flex-row space-x-1">
             <StarIcon color="green" opacity={0.5} size={22} />
-            <Text className="text-green-500 pr-2">{rating}</Text>
+            <Text className="text-green-500 pr-2">{estimatedPoint}</Text>
             <Text className="">{genre}</Text>
           </View>
         </View>

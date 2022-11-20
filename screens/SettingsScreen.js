@@ -58,12 +58,12 @@ const SettingsScreen = () => {
         </TouchableOpacity>
         <TouchableOpacity
           className="flex-row border-b items-center border-slate-400 p-4"
-          onPress={() => navigation.navigate("DeliveryAddress")}
+          onPress={() => navigation.navigate("Rewards")}
         >
           <TrophyIcon size={30} color="#000000" />
           <View className="px-4 flex-1">
-            <Text className="font-medium text-base">My eCycle Points</Text>
-            <Text className="text-slate-500">Manage your eCycle Points</Text>
+            <Text className="font-medium text-base">Rewards</Text>
+            <Text className="text-slate-500">Manage your Rewards</Text>
           </View>
           <ChevronRightIcon size={20} color="#000000" />
         </TouchableOpacity>
@@ -89,8 +89,10 @@ const SettingsScreen = () => {
           </View>
           <ChevronRightIcon size={20} color="#000000" />
         </TouchableOpacity>
-        <TouchableOpacity>
-          <Text className="text-red-600 text-xl font-semibold p-6">LOG IN</Text>
+        <TouchableOpacity onPress={() => [navigation.navigate("Login")]}>
+          <Text className="text-red-600 text-xl font-semibold p-6">
+            LOG OUT
+          </Text>
         </TouchableOpacity>
         <View className="flex items-center">
           <Text className="underline">Terms of Service & Privacy</Text>

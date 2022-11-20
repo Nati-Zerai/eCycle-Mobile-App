@@ -7,17 +7,7 @@ import {
 } from "react-native-heroicons/solid";
 import { useNavigation } from "@react-navigation/native";
 
-const Footer = ({
-  id,
-  imgUrl,
-  title,
-  rating,
-  genre,
-  address,
-  short_description,
-  long,
-  lat,
-}) => {
+const Footer = () => {
   const navigation = useNavigation();
 
   const [activeTab, setActiveTab] = useState("Home");
@@ -33,10 +23,7 @@ const Footer = ({
       </TouchableOpacity>
 
       <TouchableOpacity
-        onPress={() => [
-          setActiveTab("Cart"),
-          navigation.navigate("Cart"),
-        ]}
+        onPress={() => [setActiveTab("Cart"), navigation.navigate("Cart")]}
       >
         <ShoppingCartIcon
           size={34}

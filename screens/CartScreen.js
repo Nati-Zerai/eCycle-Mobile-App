@@ -4,7 +4,10 @@ import { useNavigation } from "@react-navigation/native";
 import { ArrowRightIcon, UserIcon } from "react-native-heroicons/solid";
 import CartItems from "../components/CartItems";
 import History from "../components/History";
-import { ShoppingCartIcon } from "react-native-heroicons/outline";
+import {
+  InformationCircleIcon,
+  ShoppingCartIcon,
+} from "react-native-heroicons/outline";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCartItems } from "../features/cartSlice";
 import { selectHistoryItems } from "../features/historySlice";
@@ -36,36 +39,29 @@ const CartScreen = () => {
         </View>
         {/* Main */}
         <ScrollView className="mb-20">
-          {/* Track button */}
-          <View className="p-5 bg-white space-y-4">
-            <TouchableOpacity
-              onPress={() => {
-                navigation.navigate("Track");
-              }}
-              className="rounded-2xl bg-white border-2  border-lime-500 p-4 mx-3"
-            >
-              <Text className="text-center text-[#7cc464] text-xl font-semibold">
-                Track pickup
-              </Text>
-            </TouchableOpacity>
-          </View>
-
-          <Text className="font-semibold text-2xl mt-6 pb-2 px-2">Cart</Text>
+          <Text className="font-semibold text-2xl ml-2 mt-2 pb-2 px-2">
+            Cart
+          </Text>
           {/* When Cart is empty */}
           <View>
             {itemsCart.length <= 0 ? (
-              <View className="flex-row items-center justify-center p-6 border bg-white rounded-xl">
+              <View className="items-center justify-center p-6 bg-white border border-gray-300 rounded-xl mx-2">
                 <ShoppingCartIcon size={55} color="#7cc464" />
-                <View className="px-8 py-4">
-                  <Text className="font-bold text-2xl">Your Cart is empty</Text>
-                  <Text className="text-sm text-gray-400">
-                    see recommendations
-                  </Text>
+
+                <View className="flex-row ">
+                  <View className="px-8 py-4">
+                    <Text className="font-bold text-2xl">
+                      Your Cart is empty
+                    </Text>
+                    <Text className="text-sm text-gray-400">
+                      Let's Go! Do your first recycle!
+                    </Text>
+                  </View>
                 </View>
               </View>
             ) : null}
           </View>
-
+          {/* Cart */}
           {Object.entries(itemsCart).map(([key, items]) => (
             <View key={key}>
               <CartItems
@@ -80,8 +76,47 @@ const CartScreen = () => {
             </View>
           ))}
 
+          {/* Track button */}
+          <View className="p-5 ">
+            <TouchableOpacity
+              disabled={historyItems.length <= 0}
+              onPress={() => {
+                navigation.navigate("Track");
+              }}
+              className={
+                historyItems.length <= 0
+                  ? "items-center bg-gray-300 px-2 py-3 rounded-xl mx-4 my-3 "
+                  : "items-center bg-[#7cc464] px-2 py-3 rounded-xl mx-4 my-3 "
+              }
+            >
+              <Text className="text-center text-white text-xl font-semibold">
+                TRACK PICKUP
+              </Text>
+            </TouchableOpacity>
+          </View>
+
+          <Text className="font-semibold text-2xl ml-2 pb-2 px-2">History</Text>
+          {/* When History is empty */}
+          <View>
+            {historyItems.length <= 0 ? (
+              <View className="items-center justify-center p-6 bg-white border border-gray-300 rounded-xl mx-2">
+                <InformationCircleIcon size={55} color="#7cc464" />
+
+                <View className="flex-row ">
+                  <View className="px-8 py-4">
+                    <Text className="font-bold text-2xl">
+                      Your History is empty
+                    </Text>
+                    <Text className="text-sm text-gray-400">
+                      Let's Go! Do your first recycle!
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            ) : null}
+          </View>
+
           {/* History */}
-          <Text className="font-semibold text-2xl mt-6 pb-2 px-2">History</Text>
           {Object.entries(historyItems).map(([key, items]) => (
             <View key={key} className="bg-white">
               <History

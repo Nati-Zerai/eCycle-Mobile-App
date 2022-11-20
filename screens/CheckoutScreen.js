@@ -10,6 +10,7 @@ import {
   selectCartPointsTotal,
 } from "../features/cartSlice";
 import { addToHistory, selectHistoryItems } from "../features/historySlice";
+import { urlFor } from "../sanity";
 
 const CheckoutScreen = () => {
   const navigation = useNavigation();
@@ -66,7 +67,7 @@ const CheckoutScreen = () => {
               <Text className="text-[#7cc464]">{item.amount} x</Text>
               <Image
                 source={{
-                  uri: item.imgUrl,
+                  uri: urlFor(item.imgUrl).url(),
                 }}
                 className="h-12 w-12 rounded-full"
               />

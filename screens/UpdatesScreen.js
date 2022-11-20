@@ -7,20 +7,12 @@ import {
   QuestionMarkCircleIcon,
 } from "react-native-heroicons/outline";
 import { CalendarDaysIcon, MapPinIcon } from "react-native-heroicons/solid";
+import { urlFor } from "../sanity";
+
 const UpdatesScreen = () => {
   const navigation = useNavigation();
   const {
-    params: {
-      id,
-      imgUrl,
-      title,
-      rating,
-      genre,
-      address,
-      short_description,
-      long,
-      lat,
-    },
+    params: { id, imgUrl, title, description, date, location, content },
   } = useRoute();
 
   return (
@@ -28,16 +20,16 @@ const UpdatesScreen = () => {
       <View className="relative">
         <Image
           source={{
-            uri: imgUrl,
+            uri: urlFor(imgUrl).url(),
           }}
-          className="w-full h-56 bg-gray-500 p-5"
+          className="h-52 w-[100%] self-center"
         />
       </View>
       <TouchableOpacity
         onPress={navigation.goBack}
         className="absolute top-14 left-5 p-2 bg-gray-100 rounded-full"
       >
-        <ArrowLeftIcon size={20} color="#7cc464" />
+        <ArrowLeftIcon size={20} color="#00CCBB" />
       </TouchableOpacity>
 
       <View className="bg-white">
@@ -47,24 +39,30 @@ const UpdatesScreen = () => {
             <View className="flex-row items-center space-x-1">
               <CalendarDaysIcon color="green" opacity={0.5} size={22} />
               <Text className="text-xs text-gray-500">
-                <Text className="">{rating}</Text> - {genre}
+                <Text className="">{date}</Text> - {description}
               </Text>
             </View>
             <View className="flex-row items-center space-x-1">
               <MapPinIcon color="black" opacity={0.4} size={22} />
-              <Text className="">{address}</Text>
+              <Text className="">{location}</Text>
             </View>
           </View>
         </View>
         <TouchableOpacity className="flex-row items-center space-x-2 p-4 border-y border-gray-300">
           <QuestionMarkCircleIcon size={20} opacity={0.6} color="gray" />
           <Text className="flex-1">Want some help?</Text>
-          <ChevronRightIcon size={20} color="#7cc464" />
+          <ChevronRightIcon size={20} color="#00CCBB" />
         </TouchableOpacity>
         <ScrollView>
-          <Text className="my-2 mx-4 pb-3 text-base">{short_description}</Text>
-          <Text className="my-2 mx-4 pb-3 text-base">{short_description}</Text>
-          <Text className="my-2 mx-4 pb-3 text-base">{short_description}</Text>
+          <Text className="my-2 mx-4 pb-3 text-base">hello {content}</Text>
+          <Text className="my-2 mx-4 pb-3 text-base">
+            {content} hello there on of the following
+          </Text>
+          <Text className="my-2 mx-4 pb-3 text-base">{content}</Text>
+          <Text className="my-2 mx-4 pb-3 text-base">{content}</Text>
+          <Text className="my-2 mx-4 pb-3 text-base">{content}</Text>
+          <Text className="my-2 mx-4 pb-3 text-base">{content}</Text>
+          <Text className="my-2 mx-4 pb-3 text-base">{content}</Text>
         </ScrollView>
       </View>
     </View>

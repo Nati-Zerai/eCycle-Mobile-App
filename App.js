@@ -23,6 +23,8 @@ import ContinueToCartScreen from "./screens/ContinueToCartScreen";
 import TrackScreen from "./screens/TrackScreen";
 import CheckoutScreen from "./screens/CheckoutScreen";
 import PreparingOrderScreen from "./screens/PreparingOrderScreen";
+import LoginScreen from "./screens/LoginScreen";
+import RewardsScreen from "./screens/RewardsScreen";
 
 import { Provider } from "react-redux";
 import { store } from "./store";
@@ -97,6 +99,8 @@ export default function App() {
               component={PreparingOrderScreen}
               options={{ presentation: "fullScreenModal", headerShown: false }}
             />
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Rewards" component={RewardsScreen} />
           </Stack.Navigator>
 
           <Footer />

@@ -7,6 +7,7 @@ import {
   TrashIcon,
 } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
+import { urlFor } from "../sanity";
 
 const History = ({
   id,
@@ -25,7 +26,7 @@ const History = ({
         <View className="flex-row">
           <Image
             source={{
-              uri: imgUrl,
+              uri: urlFor(imgUrl).url(),
             }}
             className="h-20 w-20 self-center bg-gray-300 p-4 ml-6 rounded-full"
           />

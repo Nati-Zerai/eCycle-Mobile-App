@@ -7,7 +7,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import {
   ArrowRightIcon,
@@ -17,149 +17,41 @@ import {
 import SearchFilter from "../components/SearchFilter";
 import DevicesColumn from "../components/DevicesColumn";
 import SearchFilterCard from "../components/SearchFilterCards";
+import client from "../sanity";
 
 const ActionScreen = () => {
   const navigation = useNavigation();
-  const [selector, setSelector] = useState("Laptop");
+  const [selector, setSelector] = useState("Accessories");
+
   const [items, setitems] = useState([
-    { key: "1", type: "Laptop", color: "white" },
-    { key: "2", type: "Phone", color: "white" },
-    { key: "3", type: "TV", color: "white" },
-    { key: "4", type: "Toy", color: "white" },
+    { key: "1", type: "Accessories", color: "white" },
+    { key: "2", type: "Kitchen Appliances", color: "white" },
+    { key: "3", type: "Smart Devices", color: "white" },
+    { key: "4", type: "Home Electronics", color: "white" },
+    { key: "5", type: " Kids Toy", color: "white" },
   ]);
-  const [electronics, setelectronics] = useState([
-    {
-      key: "121",
-      imgUrl:
-        "https://images.unsplash.com/photo-1603791239531-1dda55e194a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXBwbGUlMjBpcGhvbmV8ZW58MHx8MHx8&w=1000&q=80",
-      title: "Phone",
-      rating: "green",
-      genre: "Smartphone",
-      estimatedPoint: 10,
-      short_description: "This is short description about the device",
-    },
-    {
-      key: "122",
-      imgUrl:
-        "https://images.unsplash.com/photo-1603791239531-1dda55e194a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXBwbGUlMjBpcGhvbmV8ZW58MHx8MHx8&w=1000&q=80",
-      title: "Phone",
-      rating: "green",
-      estimatedPoint: 5,
+  const [electronics, setelectronics] = useState([]);
 
-      genre: "Smartphone",
-      short_description: "This is short description about the device",
-    },
-    {
-      key: "123",
-      imgUrl:
-        "https://images.unsplash.com/photo-1603791239531-1dda55e194a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXBwbGUlMjBpcGhvbmV8ZW58MHx8MHx8&w=1000&q=80",
-      title: "Phone",
-      rating: "green",
-      genre: "Smartphone",
-      estimatedPoint: 10,
-
-      short_description: "This is short description about the device",
-    },
-    {
-      key: "124",
-      imgUrl:
-        "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      title: "Laptop",
-      rating: "green",
-      genre: "Smartphone",
-      estimatedPoint: 5,
-
-      short_description: "This is short description about the device",
-    },
-    {
-      key: "125",
-      imgUrl:
-        "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      title: "Laptop",
-      rating: "green",
-      genre: "Smartphone",
-      estimatedPoint: 10,
-
-      short_description: "This is short description about the device",
-    },
-    {
-      key: "126",
-      imgUrl:
-        "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
-      title: "Laptop",
-      rating: "green",
-      genre: "Smartphone",
-      estimatedPoint: 5,
-
-      short_description: "This is short description about the device",
-    },
-    {
-      key: "127",
-      imgUrl:
-        "https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=757&q=80",
-      title: "TV",
-      rating: "green",
-      genre: "Smartphone",
-      estimatedPoint: 10,
-
-      short_description: "This is short description about the device",
-    },
-    {
-      key: "128",
-      imgUrl:
-        "https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=757&q=80",
-      title: "TV",
-      rating: "green",
-      genre: "Smartphone",
-      estimatedPoint: 5,
-
-      short_description: "This is short description about the device",
-    },
-    {
-      key: "129",
-      imgUrl:
-        "https://images.unsplash.com/photo-1593305841991-05c297ba4575?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=757&q=80",
-      title: "TV",
-      rating: "green",
-      genre: "Smartphone",
-      estimatedPoint: 10,
-
-      short_description: "This is short description about the device",
-    },
-    {
-      key: "131",
-      imgUrl:
-        "https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
-      title: "Toy",
-      rating: "green",
-      genre: "Smartphone",
-      estimatedPoint: 5,
-
-      short_description: "This is short description about the device",
-    },
-    {
-      key: "132",
-      imgUrl:
-        "https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
-      title: "Toy",
-      rating: "green",
-      genre: "Smartphone",
-      estimatedPoint: 10,
-
-      short_description: "This is short description about the device",
-    },
-    {
-      key: "133",
-      imgUrl:
-        "https://images.unsplash.com/photo-1581235720704-06d3acfcb36f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80",
-      title: "Toy",
-      rating: "green",
-      genre: "Smartphone",
-      estimatedPoint: 5,
-
-      short_description: "This is short description about the device",
-    },
-  ]);
+  useEffect(() => {
+    client
+      .fetch(
+        `
+  *[_type == "electronics"]{
+    _id,
+    estimatedPoint,
+    image,
+    name,
+    short_description,
+    genre->{
+    genre
+  }
+  }
+  `
+      )
+      .then((data) => {
+        setelectronics(data);
+      });
+  }, []);
 
   function hundlePress(item) {
     setSelector(item.type);
@@ -198,8 +90,6 @@ const ActionScreen = () => {
         {/* Body */}
 
         <SafeAreaView>
-          {/* Search Filter */}
-          {/* <SearchFilter /> This works*/}
           <ScrollView
             contentContainerStyle={{
               paddingHorizontal: 15,
@@ -208,39 +98,39 @@ const ActionScreen = () => {
             horizontal
             showsHorizontalScrollIndicator={false}
           >
-            {items.map((item) => (
-              // onPress={() => setitems((prevValue) =>
-              //   ({...prevValue, [items.color]: "green" )}>
-              <TouchableOpacity onPress={() => hundlePress(item)}>
-                <View key={item.key}>
+            <View className="flex-row">
+              {items.map((item) => (
+                <TouchableOpacity
+                  key={item.key}
+                  onPress={() => hundlePress(item)}
+                >
                   <SearchFilterCard
-                    key={item.key}
+                    id={item.key}
                     title={item.type}
                     color={item.color}
                     selector={selector}
                   />
-                </View>
-              </TouchableOpacity>
-            ))}
+                </TouchableOpacity>
+              ))}
+            </View>
           </ScrollView>
         </SafeAreaView>
+
         <ScrollView>
           <View className="flex-row items-center justify-between mt-1 px-4">
             <Text className="font-bold text-lg">Popular Devices</Text>
           </View>
           {electronics
-            .filter((electronic) => electronic.title == selector)
+            .filter((electronic) => electronic.genre.genre == selector)
             .map((electronic) => (
-              <View key={electronic.key}>
+              <View key={electronic._id}>
                 <DevicesColumn
-                  key={electronic.key}
-                  id={electronic.key}
-                  imgUrl={electronic.imgUrl}
-                  title={electronic.title}
-                  rating={electronic.rating}
-                  genre={electronic.genre}
-                  estimatedPoint={electronic.estimatedPoint}
+                  id={electronic._id}
+                  imgUrl={electronic.image.asset._ref}
+                  title={electronic.name}
+                  genre={electronic.genre.genre}
                   short_description={electronic.short_description}
+                  estimatedPoint={electronic.estimatedPoint}
                 />
               </View>
             ))}

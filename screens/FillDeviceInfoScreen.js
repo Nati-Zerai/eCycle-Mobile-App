@@ -13,6 +13,7 @@ import {
   removeFromBasket,
   selectBasketItemsWithId,
 } from "../features/basketSlice";
+import { urlFor } from "../sanity";
 
 const FillDeviceInfoScreen = () => {
   const navigation = useNavigation();
@@ -64,7 +65,7 @@ const FillDeviceInfoScreen = () => {
         <View className="relative">
           <Image
             source={{
-              uri: imgUrl,
+              uri: urlFor(imgUrl).url(),
             }}
             className="w-full h-56 bg-gray-500 p-5"
           />
@@ -77,8 +78,8 @@ const FillDeviceInfoScreen = () => {
         </TouchableOpacity>
         <View className="bg-white">
           <View className="px-4 pt-4">
-            <Text className="font-bold text-2xl">Mobile Phone</Text>
-            <Text className="font-medium text-xl">{title}</Text>
+            <Text className="font-bold text-2xl">{title}</Text>
+            <Text className="font-medium text-xl">{genre}</Text>
             <View className="flex-row space-x-2 my-1 mb-2"></View>
           </View>
         </View>

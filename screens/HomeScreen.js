@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
@@ -13,9 +13,25 @@ import ButtonsHome from "../components/ButtonsHome";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 import { selectHistoryPointsTotal } from "../features/historySlice";
+import client from "../sanity";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
+  const [newstype, setNewsType] = useState([]);
+
+  useEffect(() => {
+    client
+      .fetch(
+        `
+*[_type == "newstype"]{
+  ...,
+}
+  `
+      )
+      .then((data) => {
+        setNewsType(data);
+      });
+  }, []);
 
   //redux
   const totalHistoryPoints = useSelector(selectHistoryPointsTotal);
@@ -58,7 +74,7 @@ const HomeScreen = () => {
         {/* Points */}
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("Wallet");
+            navigation.navigate("Rewards");
           }}
           className="bg-white mx-10 mt-3 rounded-2xl"
         >
@@ -93,18 +109,14 @@ const HomeScreen = () => {
           />
         </View>
         {/* Updates Row */}
-        <UpdatesRow
-          id={12}
-          title="Daily Updates"
-          description="Recent news and information related to electronic waste"
-          featuredCategory="featured"
-        />
-        <UpdatesRow
-          id={12}
-          title="Daily Updates"
-          description="Recent news and information related to electronic waste"
-          featuredCategory="featured"
-        />
+        {newstype.map((data) => (
+          <UpdatesRow
+            key={data._id}
+            id={data._id}
+            title={data.newstype}
+            description={data.description}
+          />
+        ))}
       </ScrollView>
     </View>
   );

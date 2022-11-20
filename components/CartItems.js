@@ -15,6 +15,7 @@ import {
   selectCartItems,
   selectCartItemsWithId,
 } from "../features/cartSlice";
+import { urlFor } from "../sanity";
 
 const CartItems = ({
   id,
@@ -59,11 +60,11 @@ const CartItems = ({
 
   return (
     <View>
-      <View className="bg-white border border-gray-300">
+      <View className="bg-white border border-gray-300 mx-4 rounded-lg">
         <View className="flex-row">
           <Image
             source={{
-              uri: imgUrl,
+              uri: urlFor(imgUrl).url(),
             }}
             className="h-24 w-24 self-center bg-gray-300 p-4 ml-6 rounded-full"
           />
