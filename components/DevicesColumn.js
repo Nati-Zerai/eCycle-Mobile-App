@@ -9,6 +9,7 @@ const DevicesColumn = ({
   title,
   rating,
   genre,
+  estimatedPoint,
   short_description,
 }) => {
   const navigation = useNavigation();
@@ -20,7 +21,8 @@ const DevicesColumn = ({
           id,
           imgUrl,
           title,
-          rating,
+          genre,
+          estimatedPoint,
           short_description,
         });
       }}

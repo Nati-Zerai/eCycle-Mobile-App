@@ -1,11 +1,32 @@
 import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { XCircleIcon } from "react-native-heroicons/solid";
 import Currency from "react-currency-formatter";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  removeFromCart,
+  selectCartItems,
+  selectCartPointsTotal,
+} from "../features/cartSlice";
+import { addToHistory, selectHistoryItems } from "../features/historySlice";
 
 const CheckoutScreen = () => {
   const navigation = useNavigation();
+  // Redux
+  const items = useSelector(selectCartItems);
+  const cartPointsTotal = useSelector(selectCartPointsTotal);
+  const historyItems = useSelector(selectHistoryItems);
+  const dispatch = useDispatch();
+
+  const addItemToHistory = () => {
+    if (!items.length > 0) return;
+    items.map((item) => dispatch(addToHistory(item)));
+  };
+  // console.log("Cart Items====================================");
+  // console.log(items);
+  // console.log("History Items----------------------");
+  // console.log(historyItems);
 
   return (
     <View className="flex-1 bg-white ">
@@ -37,47 +58,47 @@ const CheckoutScreen = () => {
           </TouchableOpacity>
         </View>
         <ScrollView className="divide-y divide-gray-200">
-          <View className="flex-row items-center space-x-3 bg-white py-2 px-5">
-            <Text className="text-[#7cc464]">3 x</Text>
-            <Image
-              source={{
-                uri: "https://images.unsplash.com/photo-1603791239531-1dda55e194a6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8YXBwbGUlMjBpcGhvbmV8ZW58MHx8MHx8&w=1000&q=80",
-              }}
-              className="h-12 w-12 rounded-full"
-            />
-            <Text className="flex-1">Some random thing</Text>
-            <Text className="text-gray-600">
-              <Currency quantity={200} currency="GBP" />
-            </Text>
-            <TouchableOpacity>
-              <Text className="text-[#7cc464] text-xs">Remove</Text>
-            </TouchableOpacity>
-          </View>
+          {Object.entries(items).map(([key, item]) => (
+            <View
+              key={key}
+              className="flex-row items-center space-x-3 bg-white py-2 px-5"
+            >
+              <Text className="text-[#7cc464]">{item.amount} x</Text>
+              <Image
+                source={{
+                  uri: item.imgUrl,
+                }}
+                className="h-12 w-12 rounded-full"
+              />
+              <Text className="flex-1">{item.title}</Text>
+              <Text className="text-gray-600">{item.estimateTotal} points</Text>
+              <TouchableOpacity
+                onPress={() => dispatch(removeFromCart({ id: item.id }))}
+              >
+                <Text className="text-[#7cc464] text-xs">Remove</Text>
+              </TouchableOpacity>
+            </View>
+          ))}
         </ScrollView>
 
         <View className="p-5 bg-white mt-5 space-y-4">
           <View className="flex-row justify-between">
             <Text className="text-gray-400">Subtotal</Text>
-            <Text className="text-gray-400">
-              <Currency quantity={238} currency="GBP" />
-            </Text>
+            <Text className="text-gray-400">{cartPointsTotal} points</Text>
           </View>
 
           <View className="flex-row justify-between">
-            <Text className="text-gray-400">Delivery Fee</Text>
-            <Text className="text-gray-400">
-              <Currency quantity={5.99} currency="GBP" />
-            </Text>
+            <Text className="text-gray-400">Extra Points</Text>
+            <Text className="text-gray-400">0 points</Text>
           </View>
 
           <View className="flex-row justify-between">
             <Text className="">Order Total</Text>
-            <Text className="font-extrabold">
-              <Currency quantity={335.99} currency="GBP" />
-            </Text>
+            <Text className="font-extrabold">{cartPointsTotal} points</Text>
           </View>
           <TouchableOpacity
-            onPress={() => navigation.navigate("Track")}
+            onPress={() => navigation.navigate("PreparingOrder")}
+            onPressOut={addItemToHistory}
             className="rounded-lg bg-[#7cc464] p-4"
           >
             <Text className="text-center text-white text-lg font-bold">

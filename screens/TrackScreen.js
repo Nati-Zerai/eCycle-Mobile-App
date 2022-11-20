@@ -10,7 +10,7 @@ const TrackScreen = () => {
   const navigation = useNavigation();
 
   return (
-    <View className="bg-[[#7cc464] flex-1">
+    <View className="bg-[#7cc464] flex-1">
       <SafeAreaView className="z-50">
         <View className="flex-row justify-between items-center p-5">
           <TouchableOpacity
@@ -27,7 +27,7 @@ const TrackScreen = () => {
           <View className="flex-row justify-between">
             <View>
               <Text className="text-lg text-gray-400">Estimate Arrival</Text>
-              <Text className="text-4xl font-bold">45-55 Minutes</Text>
+              <Text className="text-4xl font-bold">2-3 Days</Text>
             </View>
             <Image
               source={{

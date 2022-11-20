@@ -1,16 +1,57 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { XCircleIcon } from "react-native-heroicons/solid";
 import { ShoppingCartIcon } from "react-native-heroicons/outline";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToCart,
+  selectCartItems,
+  selectCartItemsWithId,
+} from "../features/cartSlice";
+import { useEffect } from "react";
 
 const ContinueToCartScreen = () => {
   const navigation = useNavigation();
+  const {
+    params: {
+      id,
+      imgUrl,
+      title,
+      genre,
+      amount,
+      short_description,
+      estimateTotal,
+    },
+  } = useRoute();
+
+  // Redux
+  const items = useSelector(selectCartItems);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(
+      addToCart({
+        id,
+        imgUrl,
+        title,
+        genre,
+        amount,
+        short_description,
+        estimateTotal,
+      })
+    );
+  }, [dispatch]);
+
+  // console.log("************************************");
+  // console.log(items);
+  // console.log("************************************");
 
   return (
-    <View className="absolute bottom-0 h-52 w-full flex-1 ">
-      <View className="flex-1 bg-gray-100 rounded-t-3xl">
-        <View className="px-5 py-4 border-b border-[#7cc464] rounded-t-3xl shadow-xs">
-          <View>
+    <View className="absolute bottom-0 h-50 w-full">
+      <View className="bg-gray-100 rounded-t-3xl">
+        <View className="px-5 py-3 border-b border-[#7cc464] rounded-t-3xl shadow-xs">
+          <View className="items-center">
+            <Text className="bg-gray-500 justify-center h-1 w-16 mb-2 rounded-3xl"></Text>
             <Text className="text-2xl font-bold text-center">
               Continue To Cart?
             </Text>

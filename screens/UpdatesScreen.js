@@ -37,7 +37,7 @@ const UpdatesScreen = () => {
         onPress={navigation.goBack}
         className="absolute top-14 left-5 p-2 bg-gray-100 rounded-full"
       >
-        <ArrowLeftIcon size={20} color="#00CCBB" />
+        <ArrowLeftIcon size={20} color="#7cc464" />
       </TouchableOpacity>
 
       <View className="bg-white">
@@ -59,7 +59,7 @@ const UpdatesScreen = () => {
         <TouchableOpacity className="flex-row items-center space-x-2 p-4 border-y border-gray-300">
           <QuestionMarkCircleIcon size={20} opacity={0.6} color="gray" />
           <Text className="flex-1">Want some help?</Text>
-          <ChevronRightIcon size={20} color="#00CCBB" />
+          <ChevronRightIcon size={20} color="#7cc464" />
         </TouchableOpacity>
         <ScrollView>
           <Text className="my-2 mx-4 pb-3 text-base">{short_description}</Text>

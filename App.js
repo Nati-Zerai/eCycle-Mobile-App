@@ -3,7 +3,6 @@ import { TailwindProvider } from "tailwindcss-react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screens/HomeScreen";
-import ResturantScreen from "./screens/ResturantScreen";
 import UpdatesScreen from "./screens/UpdatesScreen";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import ActionScreen from "./screens/ActionScreen";
@@ -23,6 +22,10 @@ import {
 import ContinueToCartScreen from "./screens/ContinueToCartScreen";
 import TrackScreen from "./screens/TrackScreen";
 import CheckoutScreen from "./screens/CheckoutScreen";
+import PreparingOrderScreen from "./screens/PreparingOrderScreen";
+
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 const Tab = createBottomTabNavigator();
 
@@ -32,67 +35,73 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <TailwindProvider>
-        <Stack.Navigator screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Updates" component={UpdatesScreen} />
-          <Stack.Screen name="Resturant" component={ResturantScreen} />
-          <Stack.Screen name="Action" component={ActionScreen} />
-          <Stack.Screen name="UserProfile" component={UserProfileScreen} />
-          <Stack.Screen name="Settings" component={SettingsScreen} />
-          <Stack.Screen
-            name="DeliveryAddress"
-            component={DeliveryAddressScreen}
-          />
-          <Stack.Screen name="Wallet" component={WalletScreen} />
-          <Stack.Screen
-            name="ConfigureSettings"
-            component={ConfigureSettingsScreen}
-          />
-          <Stack.Screen
-            name="FillDeviceInfo"
-            component={FillDeviceInfoScreen}
-          />
-          <Stack.Screen name="Cart" component={CartScreen} />
-          <Stack.Screen
-            name="Estimate"
-            component={EstimateScreen}
-            options={{
-              presentation: "transparentModal",
-              headerShown: false,
-              gestureEnabled: true,
-              gestureResponseDistance: 800,
-              cardOverlayEnabled: true,
-              ...TransitionPresets.ModalPresentationIOS,
-            }}
-          />
-          <Stack.Screen
-            name="ContinueToCart"
-            component={ContinueToCartScreen}
-            options={{
-              presentation: "transparentModal",
-              headerShown: false,
-              gestureEnabled: true,
-              gestureResponseDistance: 800,
-              cardOverlayEnabled: true,
-              ...TransitionPresets.ModalPresentationIOS,
-            }}
-          />
-          <Stack.Screen name="Track" component={TrackScreen} />
-          <Stack.Screen
-            name="Checkout"
-            component={CheckoutScreen}
-            options={{
-              headerShown: false,
-              gestureEnabled: true,
-              cardOverlayEnabled: true,
-              ...TransitionPresets.ModalPresentationIOS,
-            }}
-          />
-        </Stack.Navigator>
+      <Provider store={store}>
+        <TailwindProvider>
+          <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="Updates" component={UpdatesScreen} />
+            <Stack.Screen name="Action" component={ActionScreen} />
+            <Stack.Screen name="UserProfile" component={UserProfileScreen} />
+            <Stack.Screen name="Settings" component={SettingsScreen} />
+            <Stack.Screen
+              name="DeliveryAddress"
+              component={DeliveryAddressScreen}
+            />
+            <Stack.Screen name="Wallet" component={WalletScreen} />
+            <Stack.Screen
+              name="ConfigureSettings"
+              component={ConfigureSettingsScreen}
+            />
+            <Stack.Screen
+              name="FillDeviceInfo"
+              component={FillDeviceInfoScreen}
+            />
+            <Stack.Screen name="Cart" component={CartScreen} />
+            <Stack.Screen
+              name="Estimate"
+              component={EstimateScreen}
+              options={{
+                presentation: "transparentModal",
+                headerShown: false,
+                gestureEnabled: true,
+                gestureResponseDistance: 1000,
+                cardOverlayEnabled: true,
+                ...TransitionPresets.ModalPresentationIOS,
+              }}
+            />
+            <Stack.Screen
+              name="ContinueToCart"
+              component={ContinueToCartScreen}
+              options={{
+                presentation: "transparentModal",
+                headerShown: false,
+                gestureEnabled: true,
+                gestureResponseDistance: 1000,
+                cardOverlayEnabled: true,
+                ...TransitionPresets.ModalPresentationIOS,
+              }}
+            />
+            <Stack.Screen name="Track" component={TrackScreen} />
+            <Stack.Screen
+              name="Checkout"
+              component={CheckoutScreen}
+              options={{
+                headerShown: false,
+                gestureEnabled: true,
+                cardOverlayEnabled: true,
+                ...TransitionPresets.ModalPresentationIOS,
+              }}
+            />
+            <Stack.Screen
+              name="PreparingOrder"
+              component={PreparingOrderScreen}
+              options={{ presentation: "fullScreenModal", headerShown: false }}
+            />
+          </Stack.Navigator>
 
-        <Footer />
-      </TailwindProvider>
+          <Footer />
+        </TailwindProvider>
+      </Provider>
     </NavigationContainer>
   );
 }

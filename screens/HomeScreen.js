@@ -1,16 +1,24 @@
 import React from "react";
 import { View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { UserIcon, ChevronDownIcon } from "react-native-heroicons/outline";
+import {
+  UserIcon,
+  ChevronDownIcon,
+  GiftIcon,
+} from "react-native-heroicons/outline";
 import { ArrowRightCircleIcon, MapPinIcon } from "react-native-heroicons/solid";
 import Contributor from "../components/Contributor";
 import UpdatesRow from "../components/UpdatesRow";
 import ButtonsHome from "../components/ButtonsHome";
 import { useNavigation } from "@react-navigation/native";
-
+import { useSelector } from "react-redux";
+import { selectHistoryPointsTotal } from "../features/historySlice";
 
 const HomeScreen = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation();
+
+  //redux
+  const totalHistoryPoints = useSelector(selectHistoryPointsTotal);
 
   return (
     <View className="mb-40">
@@ -24,10 +32,9 @@ const HomeScreen = () => {
         <View className="flex-1">
           <Text className="font-bold text-white text-2xl mr-2">eCycle</Text>
         </View>
-        <TouchableOpacity
-            onPress={() => navigation.navigate("UserProfile")}>
-            <UserIcon size={30} color="#ffffff"/>
-            </TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("UserProfile")}>
+          <UserIcon size={30} color="#ffffff" />
+        </TouchableOpacity>
       </View>
       {/* Pick Up */}
       <TouchableOpacity className="bg-white mx-5 my-2 p-2 rounded-3xl">
@@ -38,7 +45,7 @@ const HomeScreen = () => {
             <Text className=" text-md mr-2">Zayed University, Abu Dhabi</Text>
           </View>
           <View>
-            <ChevronDownIcon size={25} color="#5cab44" />
+            <ChevronDownIcon size={25} color="#7cc464" />
           </View>
         </View>
       </TouchableOpacity>
@@ -48,8 +55,30 @@ const HomeScreen = () => {
         {/* Categories */}
         <Contributor />
 
+        {/* Points */}
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Wallet");
+          }}
+          className="bg-white mx-10 mt-3 rounded-2xl"
+        >
+          <View className="p-3 flex-row items-center justify-center space-x-2 rounded-2xl">
+            <View className="bg-gray-100 rounded-full p-3">
+              <GiftIcon size={50} color="#7cc464" />
+            </View>
+            <View>
+              <Text className="font-bold text-2xl">
+                {totalHistoryPoints} points!
+              </Text>
+              <Text className=" text-gray-500 text-xs">
+                See what you can do with you points
+              </Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+
         {/* 3 Bottons */}
-        <View className="bg-white mx-6 my-5 pb-4 rounded-lg">
+        <View className="bg-white mx-6 my-3 pb-4 rounded-2xl">
           <ButtonsHome
             img="https://cdn-icons-png.flaticon.com/512/3427/3427863.png"
             title="Recycle"
@@ -63,7 +92,6 @@ const HomeScreen = () => {
             title="Donate"
           />
         </View>
-
         {/* Updates Row */}
         <UpdatesRow
           id={12}
