@@ -77,32 +77,10 @@ const CartItems = ({
         </View>
         <View>
           <View className="flex-row">
-            {/* Plus / Minus */}
-            <View className="bg-white px-4">
-              <View className="flex-row items-center space-x-2 pb-3">
-                <TouchableOpacity
-                  disabled={amountX <= 1}
-                  onPress={() => setAmountX((amountX -= 1))}
-                  onPressOut={changeItemCartAmount}
-                >
-                  <MinusCircleIcon
-                    size={40}
-                    color={amountX <= 1 ? "gray" : "#7cc464"}
-                  />
-                </TouchableOpacity>
-                <Text> {amountX} </Text>
-                <TouchableOpacity
-                  onPress={() => setAmountX((amountX += 1))}
-                  onPressOut={changeItemCartAmount}
-                >
-                  <PlusCircleIcon size={40} color="#7cc464" />
-                </TouchableOpacity>
-              </View>
-            </View>
             {/* //// */}
             <TouchableOpacity className="flex-row px-2 rounded-xl mb-3 ml-6 items-center">
               <Text className="p-0.5 text-[#5cab44]">x</Text>
-              <Text className="p-0.5">{amountX}</Text>
+              <Text className="p-0.5">{amount}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={removeItemFromCart}

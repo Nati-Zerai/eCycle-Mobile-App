@@ -81,7 +81,7 @@ const CartScreen = () => {
           </Text>
           {/* When Cart is empty */}
           <View>
-            {listCartFirebase == null && itemsCart <= 0 ? (
+            {itemsCart <= 0 ? (
               <View className="items-center justify-center p-6 bg-white border border-gray-300 rounded-xl mx-2">
                 <ShoppingCartIcon size={55} color="#7cc464" />
 
@@ -99,9 +99,7 @@ const CartScreen = () => {
             ) : null}
           </View>
           {/* Cart */}
-          {Object.entries(
-            listCartFirebase == null ? itemsCart : listCartFirebase
-          ).map(([key, items]) => (
+          {Object.entries(itemsCart).map(([key, items]) => (
             <View key={key}>
               <CartItems
                 id={items.id}

@@ -46,17 +46,17 @@ const PreparingOrderScreen = () => {
   return (
     <SafeAreaView className="bg-[#7cc464] flex-1 justify-center items-center">
       <Animatable.Image
-        source={require("../assets/giphy-animation.gif")}
+        source={require("../assets/GIF.gif")}
         animation="slideInUp"
         iterationCount={1}
-        className="h-96 w-96"
+        className="h-80 w-96"
       />
       <Animatable.Text
         animation="slideInUp"
         iterationCount={1}
-        className="text-lg my-10 font-bold text-center text-white"
+        className="text-lg my-10 font-bold text-center text-white mx-2"
       >
-        Waiting for Resturant to accept your order!
+        Hold a second, waiting to set up your request!
       </Animatable.Text>
       <Progress.Circle size={60} indeterminate={true} color="white" />
     </SafeAreaView>

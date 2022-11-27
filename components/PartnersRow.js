@@ -5,10 +5,12 @@ import client from "../sanity";
 import PartnersRowCard from "./PartnersRowCard";
 
 const PartnersRow = ({ id, title, description }) => {
-  const [updateData, setUpdateData] = useState([])
+  const [updateData, setUpdateData] = useState([]);
 
   useEffect(() => {
-    client.fetch(`
+    client
+      .fetch(
+        `
     *[_type == "partners" && rewardstype._ref == $id]{
       rewardstype->{
       rewardstype
@@ -18,18 +20,21 @@ const PartnersRow = ({ id, title, description }) => {
       name,
       points,
     }
-  `,{id}).then((data) => {
-    setUpdateData(data);
-    });
+  `,
+        { id }
+      )
+      .then((data) => {
+        setUpdateData(data);
+      });
   }, []);
   return (
     <View>
       <View className="border-t-2 border-gray-200	">
-      <View className="flex-row items-center justify-between mt-4 px-4">
-        <Text className="font-bold text-lg">{title}</Text>
-        <ArrowRightIcon color="#00CCBB" />
-      </View>
-      <Text className="text-xs text-gray-500 px-4"> {description}</Text>
+        <View className="flex-row items-center justify-between mt-4 px-4">
+          <Text className="font-bold text-lg">{title}</Text>
+          <ArrowRightIcon color="#00CCBB" />
+        </View>
+        <Text className="text-xs text-gray-500 px-4"> {description}</Text>
       </View>
       <ScrollView
         horizontal
@@ -37,10 +42,10 @@ const PartnersRow = ({ id, title, description }) => {
           paddingHorizontal: 15,
         }}
         showHorizontalScrollIndicator="false"
-        className="pt-4"
+        className="pt-2"
       >
         {/* Upadates Cards */}
-        {updateData.map(data => (
+        {updateData.map((data) => (
           <PartnersRowCard
             key={data._id}
             id={data._id}
@@ -51,13 +56,12 @@ const PartnersRow = ({ id, title, description }) => {
             location={data.points}
             description={data.points}
 
-          //   rewardstype
-          // },
-          //   _id,
-          //   image,
-          //   name,
-          //   points,
-            
+            //   rewardstype
+            // },
+            //   _id,
+            //   image,
+            //   name,
+            //   points,
           />
         ))}
         {/* <UpdatesRowCard

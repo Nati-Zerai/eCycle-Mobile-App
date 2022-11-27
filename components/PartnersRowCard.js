@@ -30,7 +30,7 @@ const PartnersRowCard = ({
       }}
       className=""
     >
-      <View className="flex p-2 m-2 rounded-lg shadow-sm shadow-slate-600	bg-white">
+      <View className="flex p-2 mx-1 my-2 rounded-lg shadow-sm shadow-slate-600	bg-white border border-gray-300">
         <View>
           <Image
             source={{

@@ -83,7 +83,9 @@ const TrackScreen = () => {
           />
           <View className="flex-1">
             <Text className="text-lg">Jonny Davis</Text>
-            <Text className="text-gray-400 ">Your Rider</Text>
+            <Text className="text-gray-400 ">
+              Your Rider will contact you before 2-3 days of the pick up
+            </Text>
           </View>
           <Text className="text-[#7cc464] text-lg mr-5 font-bold">Call</Text>
         </View>

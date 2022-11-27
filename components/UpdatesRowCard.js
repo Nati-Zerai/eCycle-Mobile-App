@@ -28,7 +28,7 @@ const UpdatesRowCard = ({
           content,
         });
       }}
-      className="bg-white mr-3 h-76 w-80 shadow-md rounded-md"
+      className="bg-white mr-3 h-76 w-80 shadow-md rounded-md border border-gray-300"
     >
       <View>
         <Image

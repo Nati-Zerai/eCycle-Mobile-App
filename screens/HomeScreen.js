@@ -73,7 +73,7 @@ const HomeScreen = () => {
       {/* Pick Up */}
       <TouchableOpacity
         onPress={() => navigation.navigate("ChangeAddress")}
-        className="bg-white mx-5 my-2 p-2 rounded-3xl"
+        className="bg-white mx-5 my-2 p-2 rounded-3xl border border-gray-300"
       >
         <View className="flex-row items-center space-x-2 px-2">
           <MapPinIcon color="black" opacity={0.4} size={22} />
@@ -97,7 +97,7 @@ const HomeScreen = () => {
           onPress={() => {
             navigation.navigate("Rewards");
           }}
-          className="bg-white mx-10 mt-3 rounded-2xl"
+          className="bg-white mx-10 mt-3 rounded-2xl border border-gray-300"
         >
           <View className="p-3 flex-row items-center justify-center space-x-2 rounded-2xl">
             <View className="bg-gray-100 rounded-full p-3">
@@ -115,7 +115,7 @@ const HomeScreen = () => {
         </TouchableOpacity>
 
         {/* 3 Bottons */}
-        <View className="bg-white mx-6 my-3 pb-4 rounded-2xl">
+        <View className="bg-white mx-6 my-3 pb-4 rounded-2xl border border-gray-300">
           <ButtonsHome
             img="https://cdn-icons-png.flaticon.com/512/3427/3427863.png"
             title="Recycle"
