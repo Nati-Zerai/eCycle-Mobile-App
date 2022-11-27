@@ -3,13 +3,13 @@ import React from "react";
 import { ArrowRightCircleIcon } from "react-native-heroicons/solid";
 import { useNavigation } from "@react-navigation/native";
 
-const ButtonsHome = ({ title, img }) => {
+const ButtonsHome = ({ title, img, check }) => {
   const navigation = useNavigation();
 
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate("Action");
+        navigation.navigate("Action", { check });
       }}
       className="flex-row bg-[#7cc464] mx-4 mt-4 p-2 px-4 rounded-xl"
     >

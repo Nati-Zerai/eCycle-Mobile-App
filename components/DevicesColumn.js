@@ -11,20 +11,30 @@ const DevicesColumn = ({
   genre,
   short_description,
   estimatedPoint,
+  check,
 }) => {
   const navigation = useNavigation();
 
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate("FillDeviceInfo", {
-          id,
-          imgUrl,
-          title,
-          genre,
-          short_description,
-          estimatedPoint,
-        });
+        check == 0
+          ? navigation.navigate("FillDeviceInfo", {
+              id,
+              imgUrl,
+              title,
+              genre,
+              short_description,
+              estimatedPoint,
+            })
+          : navigation.navigate("RepairFill", {
+              id,
+              imgUrl,
+              title,
+              genre,
+              short_description,
+              estimatedPoint,
+            });
       }}
       className="flex-row bg-white rounded-xl my-2 ml-5 mr-5"
     >

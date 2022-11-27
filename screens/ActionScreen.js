@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import {
   ArrowRightIcon,
   MagnifyingGlassIcon,
@@ -21,6 +21,11 @@ import client from "../sanity";
 
 const ActionScreen = () => {
   const navigation = useNavigation();
+
+  const {
+    params: { check },
+  } = useRoute();
+
   const [selector, setSelector] = useState("Accessories");
 
   const [items, setitems] = useState([
@@ -131,6 +136,7 @@ const ActionScreen = () => {
                   genre={electronic.genre.genre}
                   short_description={electronic.short_description}
                   estimatedPoint={electronic.estimatedPoint}
+                  check={check}
                 />
               </View>
             ))}

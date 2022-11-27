@@ -30,6 +30,8 @@ import AddAddressScreen from "./screens/AddAddressScreen";
 import ChangeAddressScreen from "./screens/ChangeAddressScreen";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import RepairFillScreen from "./screens/RepairFillScreen";
+import RepairContinueScreen from "./screens/RepairContinueScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -61,6 +63,19 @@ export default function App() {
             <Stack.Screen
               name="FillDeviceInfo"
               component={FillDeviceInfoScreen}
+            />
+            <Stack.Screen name="RepairFill" component={RepairFillScreen} />
+            <Stack.Screen
+              name="RepairContinue"
+              component={RepairContinueScreen}
+              options={{
+                presentation: "transparentModal",
+                headerShown: false,
+                gestureEnabled: true,
+                gestureResponseDistance: 1000,
+                cardOverlayEnabled: true,
+                ...TransitionPresets.ModalPresentationIOS,
+              }}
             />
             <Stack.Screen name="Cart" component={CartScreen} />
             <Stack.Screen

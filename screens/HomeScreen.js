@@ -119,14 +119,17 @@ const HomeScreen = () => {
           <ButtonsHome
             img="https://cdn-icons-png.flaticon.com/512/3427/3427863.png"
             title="Recycle"
+            check="0"
           />
           <ButtonsHome
             img="https://cdn-icons-png.flaticon.com/512/4275/4275122.png"
             title="Repair"
+            check="1"
           />
           <ButtonsHome
             img="https://cdn-icons-png.flaticon.com/512/3038/3038243.png"
             title="Donate"
+            check="0"
           />
         </View>
         {/* Updates Row */}
