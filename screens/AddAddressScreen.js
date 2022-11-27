@@ -70,12 +70,14 @@ const AddAddressScreen = () => {
     <View>
       <View className="relative">
         <View className="bg-[#7cc464] pt-12 flex-row pb-3 items-center space-x-2 px-4">
-          <Image
-            source={{
-              uri: "https://tunza.eco-generation.org/file/e-waste%20recycling%20logo.jpg",
-            }}
-            className="h-10 w-10 bg-gray-300 p-4 rounded-full"
-          />
+          <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+            <Image
+              source={{
+                uri: "https://tunza.eco-generation.org/file/e-waste%20recycling%20logo.jpg",
+              }}
+              className="h-10 w-10 bg-gray-300 p-4 rounded-full"
+            />
+          </TouchableOpacity>
           <View className="flex-1">
             <Text className="font-bold text-white text-2xl mr-2">eCycle</Text>
           </View>

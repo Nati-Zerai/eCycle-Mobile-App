@@ -14,6 +14,7 @@ import { selectHistoryItems } from "../features/historySlice";
 import { onValue, ref, set } from "firebase/database";
 import { db } from "../firebase.config.jsx";
 import { selectCredential } from "../features/credentialSlice";
+import Footer from "../components/Footer";
 
 const CartScreen = () => {
   const navigation = useNavigation();
@@ -61,12 +62,14 @@ const CartScreen = () => {
       <View className="h-full relative flex">
         {/* Header text with logo */}
         <View className="bg-[#7cc464] pt-12 flex-row pb-3 items-center space-x-2 px-4">
-          <Image
-            source={{
-              uri: "https://tunza.eco-generation.org/file/e-waste%20recycling%20logo.jpg",
-            }}
-            className="h-10 w-10 bg-gray-300 p-4 rounded-full"
-          />
+          <TouchableOpacity onPress={() => navigation.navigate("Home")}>
+            <Image
+              source={{
+                uri: "https://tunza.eco-generation.org/file/e-waste%20recycling%20logo.jpg",
+              }}
+              className="h-10 w-10 bg-gray-300 p-4 rounded-full"
+            />
+          </TouchableOpacity>
           <View className="flex-1">
             <Text className="font-bold text-white text-2xl mr-2">eCycle</Text>
           </View>
@@ -75,7 +78,7 @@ const CartScreen = () => {
           </TouchableOpacity>
         </View>
         {/* Main */}
-        <ScrollView className="mb-20">
+        <ScrollView className="mb-28">
           <Text className="font-semibold text-2xl ml-2 mt-2 pb-2 px-2">
             Cart
           </Text>
@@ -116,12 +119,12 @@ const CartScreen = () => {
           {/* Track button */}
           <View className="p-5 ">
             <TouchableOpacity
-              disabled={listHistoryFirebase.length <= 0}
+              disabled={listHistoryFirebase == null}
               onPress={() => {
                 navigation.navigate("Track");
               }}
               className={
-                listHistoryFirebase.length <= 0
+                listHistoryFirebase == null
                   ? "items-center bg-gray-300 px-2 py-3 rounded-xl mx-4 my-3 "
                   : "items-center bg-[#7cc464] px-2 py-3 rounded-xl mx-4 my-3 "
               }
@@ -157,7 +160,7 @@ const CartScreen = () => {
           {Object.entries(
             listHistoryFirebase == null ? historyItems : listHistoryFirebase
           ).map(([key, items]) => (
-            <View key={key} className="bg-white">
+            <View key={key}>
               <History
                 id={items.id}
                 imgUrl={items.imgUrl}
@@ -170,7 +173,7 @@ const CartScreen = () => {
             </View>
           ))}
         </ScrollView>
-        <View className="absolute bottom-0 flex w-full bg-gray-50">
+        <View className="absolute bottom-10 flex w-full bg-gray-50">
           <TouchableOpacity
             disabled={itemsCart.length <= 0}
             onPress={() => {
@@ -186,6 +189,7 @@ const CartScreen = () => {
           </TouchableOpacity>
         </View>
       </View>
+      <Footer />
     </>
   );
 };

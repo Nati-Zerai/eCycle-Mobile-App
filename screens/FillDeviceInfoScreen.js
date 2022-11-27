@@ -14,6 +14,7 @@ import {
   selectBasketItemsWithId,
 } from "../features/basketSlice";
 import { urlFor } from "../sanity";
+import Footer from "../components/Footer";
 
 const FillDeviceInfoScreen = () => {
   const navigation = useNavigation();
@@ -155,6 +156,7 @@ const FillDeviceInfoScreen = () => {
           </TouchableOpacity>
         </View>
       </ScrollView>
+      <Footer />
     </>
   );
 };

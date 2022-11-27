@@ -8,7 +8,7 @@ const ContributorCard = ({ imgUrl, title, points }) => {
         source={{
           uri: imgUrl,
         }}
-        className="h-12 w-12 rounded-full"
+        className="h-12 w-12 bg-white rounded-full"
       />
       <Text className="bottom-1 mt-1 text-xs">{title}</Text>
       <Text className="bottom-1 text-xs text-[#73c45b]">{points}</Text>

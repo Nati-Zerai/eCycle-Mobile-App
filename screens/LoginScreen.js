@@ -12,14 +12,12 @@ import {
   EyeSlashIcon,
   LockClosedIcon,
 } from "react-native-heroicons/outline";
-import { AntDesign } from "@expo/vector-icons";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
 import { addToCredential } from "../features/credentialSlice.js";
-import { auth, db } from "../firebase.config.jsx";
+import { auth, db, provider } from "../firebase.config.jsx";
 import { onValue, ref } from "firebase/database";
-import Footer from "../components/Footer.js";
 
 const LoginScreen = () => {
   const navigation = useNavigation();
@@ -27,6 +25,8 @@ const LoginScreen = () => {
   const [userId, setUserId] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  const [errorDisplay, setErrorDisplay] = useState("");
+  // const [hide, setHide] = useState(true);
 
   //Redux
   const dispatch = useDispatch();
@@ -53,6 +53,7 @@ const LoginScreen = () => {
         const user = userCredential.user;
         // setUserId(user.uid);
         console.log("userId:   " + user.uid);
+        setErrorDisplay("Correct email/password!");
 
         readCredentialFirebase(user.uid);
         setTimeout(() => {
@@ -63,12 +64,13 @@ const LoginScreen = () => {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorMessage);
+        setErrorDisplay("Wrong email/password!");
       });
   }
 
   return (
     <View>
-      <View className="bg-white w-full h-72 flex justify-end border-b-2 border-green-200">
+      <View className="bg-white w-full h-72 flex justify-end border-b-2 border-[#5cab44]">
         <View>
           <Image
             source={{
@@ -101,6 +103,7 @@ const LoginScreen = () => {
           <View className="flex-row items-center bg-gray-200 rounded-3xl px-4 w-[80%] mx-[10%] my-[5%] h-12">
             <LockClosedIcon size={30} color="gray" />
             <TextInput
+              secureTextEntry={true}
               placeholder="Enter you password"
               value={password}
               onChangeText={(Text) => {
@@ -108,10 +111,16 @@ const LoginScreen = () => {
               }}
               className="pl-2 flex-1"
             ></TextInput>
-            <TouchableOpacity>
+            <TouchableOpacity
+            // onPress={setHide(!hide)}
+            >
               <EyeSlashIcon size={30} color="gray" />
             </TouchableOpacity>
           </View>
+          <Text className="text-red-500 text-sm text-center">
+            {errorDisplay == "Wrong email/password!" ? errorDisplay : null}
+          </Text>
+
           <TouchableOpacity
             // onPress={readCredentialFirebase(userId)}
             onPress={signIn}
@@ -122,14 +131,6 @@ const LoginScreen = () => {
             </Text>
           </TouchableOpacity>
           <View className="flex justify-center items-center">
-            {/* <Text className="mb-4 pb-1 border-b-2 border-gray-300">Or sign up with</Text> */}
-            <View className="flex-row justify-center space-x-16 mt-8">
-              <TouchableOpacity>
-                <AntDesign name="facebook-square" size={36} color="#3b5998" />
-              </TouchableOpacity>
-              <AntDesign name="linkedin-square" size={36} color="#495ea3" />
-              <AntDesign name="google" size={36} color="lightgray" />
-            </View>
             <View className="flex-row mt-4 mb-4 pt-2 border-t-2 border-gray-300">
               <Text>Don't have an account ?</Text>
               <TouchableOpacity
@@ -137,7 +138,7 @@ const LoginScreen = () => {
                   navigation.navigate("SignUp");
                 }}
               >
-                <Text className="text-[#00ccbb] px-2">SIGN UP</Text>
+                <Text className="text-[#5cab44] px-2">SIGN UP</Text>
               </TouchableOpacity>
             </View>
           </View>

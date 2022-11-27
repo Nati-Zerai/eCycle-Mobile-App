@@ -60,15 +60,15 @@ const CartItems = ({
 
   return (
     <View>
-      <View className="bg-white border border-gray-300 mx-4 rounded-lg">
+      <View className="bg-white border border-gray-300 mx-4 mb-1 p-2 rounded-2xl">
         <View className="flex-row">
           <Image
             source={{
               uri: urlFor(imgUrl).url(),
             }}
-            className="h-24 w-24 self-center bg-gray-300 p-4 ml-6 rounded-full"
+            className="h-24 w-24 self-center bg-gray-300 rounded-full"
           />
-          <View className="flex flex-1 px-8 py-4">
+          <View className="flex flex-1 ml-2">
             <Text className="text-xs text-gray-600">{genre}</Text>
             <Text className="font-bold text-lg">{title}</Text>
             <Text className="text-sm">{short_description}</Text>
@@ -78,13 +78,13 @@ const CartItems = ({
         <View>
           <View className="flex-row">
             {/* //// */}
-            <TouchableOpacity className="flex-row px-2 rounded-xl mb-3 ml-6 items-center">
+            <TouchableOpacity className="flex-row px-2 rounded-xl ml-6 items-center">
               <Text className="p-0.5 text-[#5cab44]">x</Text>
               <Text className="p-0.5">{amount}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={removeItemFromCart}
-              className="flex-row px-2 border rounded-xl mb-3 ml-6 items-center"
+              className="flex-row px-2 border border-gray-500 rounded-xl ml-6 items-center"
             >
               <TrashIcon size={20} color="#5cab44" />
               <Text className="p-1">Remove</Text>

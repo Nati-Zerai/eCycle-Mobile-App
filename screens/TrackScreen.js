@@ -9,6 +9,7 @@ import { onValue, ref } from "firebase/database";
 import { db } from "../firebase.config";
 import { selectCredential } from "../features/credentialSlice";
 import { useSelector } from "react-redux";
+import Footer from "../components/Footer";
 
 const TrackScreen = () => {
   const navigation = useNavigation();
@@ -16,81 +17,84 @@ const TrackScreen = () => {
   const selectUserCredential = useSelector(selectCredential);
 
   return (
-    <View className="bg-[#7cc464] flex-1">
-      <SafeAreaView className="z-50">
-        <View className="flex-row justify-between items-center p-5">
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("Home");
-            }}
-          >
-            <XMarkIcon color="white" size={30} />
-          </TouchableOpacity>
-          <Text className="font-light text-white text-lg">Order Help</Text>
-        </View>
-
-        <View className="bg-white mx-5 my-2 rounded-md p-6 z-50 shadow-md">
-          <View className="flex-row justify-between">
-            <View>
-              <Text className="text-lg text-gray-400">Estimate Arrival</Text>
-              <Text className="text-4xl font-bold">2-3 Days</Text>
-            </View>
-            <Image
-              source={{
-                uri: "https://links.papareact.com/fls",
+    <>
+      <View className="bg-[#7cc464] flex-1">
+        <SafeAreaView className="z-50">
+          <View className="flex-row justify-between items-center p-5">
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("Home");
               }}
-              className="h-20 w-20"
-            />
+            >
+              <XMarkIcon color="white" size={30} />
+            </TouchableOpacity>
+            <Text className="font-light text-white text-lg">Order Help</Text>
           </View>
 
-          <Progress.Bar size={30} color="#7cc464" indeterminate={true} />
+          <View className="bg-white mx-5 my-2 rounded-md p-6 z-50 shadow-md">
+            <View className="flex-row justify-between">
+              <View>
+                <Text className="text-lg text-gray-400">Estimate Arrival</Text>
+                <Text className="text-4xl font-bold">2-3 Days</Text>
+              </View>
+              <Image
+                source={{
+                  uri: "https://links.papareact.com/fls",
+                }}
+                className="h-20 w-20"
+              />
+            </View>
 
-          <Text className="mt-3 text-gray-500">
-            Your pick up request is under process
-          </Text>
-        </View>
-      </SafeAreaView>
+            <Progress.Bar size={30} color="#7cc464" indeterminate={true} />
 
-      <MapView
-        initialRegion={{
-          latitude: selectUserCredential[0].location.lat,
-          longitude: selectUserCredential[0].location.long,
-          latitudeDelta: 0.0455,
-          longitudeDelta: 0.0455,
-        }}
-        className="flex-1 -mt-10 z-0"
-        mapType="mutedStandard"
-      >
-        <Marker
-          coordinate={{
-            latitude: selectUserCredential[0].location.lat,
-            longitude: selectUserCredential[0].location.long,
-          }}
-          title="Electronic Recyle"
-          description="Recycling a used mobile phone"
-          identifier="origin"
-          pinColor="red"
-        />
-      </MapView>
-
-      <SafeAreaView className="bg-white h-24">
-        <View className="absolute top-3 flex-row items-center space-x-5">
-          <Image
-            source={{
-              uri: "https://links.papareact.com/wru",
-            }}
-            className="h-12 w-12 bg-gray-300 p-4 rounded-full ml-5"
-          />
-          <View className="flex-1">
-            <Text className="text-lg">Jonny Davis</Text>
-            <Text className="text-gray-400 ">
-              Your Rider will contact you before 2-3 days of the pick up
+            <Text className="mt-3 text-gray-500">
+              Your pick up request is under process
             </Text>
           </View>
-          <Text className="text-[#7cc464] text-lg mr-5 font-bold">Call</Text>
-        </View>
-      </SafeAreaView>
-    </View>
+        </SafeAreaView>
+
+        <MapView
+          initialRegion={{
+            latitude: selectUserCredential[0].location.lat,
+            longitude: selectUserCredential[0].location.long,
+            latitudeDelta: 0.0455,
+            longitudeDelta: 0.0455,
+          }}
+          className="flex-1 -mt-10 z-0"
+          mapType="mutedStandard"
+        >
+          <Marker
+            coordinate={{
+              latitude: selectUserCredential[0].location.lat,
+              longitude: selectUserCredential[0].location.long,
+            }}
+            title="Electronic Recyle"
+            description="Recycling a used mobile phone"
+            identifier="origin"
+            pinColor="red"
+          />
+        </MapView>
+
+        <SafeAreaView className="h-24">
+          <View className="absolute bottom-12 bg-white flex-row items-center space-x-5 pb-2 pt-1 mb-1">
+            <Image
+              source={{
+                uri: "https://links.papareact.com/wru",
+              }}
+              className="h-12 w-12 bg-gray-300 p-4 rounded-full ml-5"
+            />
+            <View className="flex-1 mr-6">
+              <Text className="text-lg">Jonny Davis</Text>
+              <Text className="text-gray-400 ">
+                Your Rider will contact you before one day of the pick up
+              </Text>
+            </View>
+            {/* <Text className="text-[#7cc464] text-lg mr-5 font-bold">Call</Text> */}
+          </View>
+        </SafeAreaView>
+      </View>
+      <Footer />
+    </>
   );
 };
 

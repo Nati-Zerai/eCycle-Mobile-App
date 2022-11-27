@@ -133,8 +133,7 @@ export default function App() {
               }}
             />
           </Stack.Navigator>
-
-          <Footer />
+          {/* <Footer /> */}
         </TailwindProvider>
       </Provider>
     </NavigationContainer>

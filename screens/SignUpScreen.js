@@ -21,6 +21,8 @@ import { ref, set } from "firebase/database";
 
 const SignUpScreen = () => {
   const navigation = useNavigation();
+  const [errorDisplay, setErrorDisplay] = useState("");
+
   const [userName, setUserName] = useState();
   const [phone, setPhone] = useState();
   const [location, setLocation] = useState({
@@ -59,6 +61,8 @@ const SignUpScreen = () => {
         const email = user.email;
         const userId = user.uid;
 
+        setErrorDisplay("Correct email/password!");
+
         writeUserFirebase(userId, email, userName, phone, location, 0);
         navigation.navigate("Login");
       })
@@ -67,11 +71,16 @@ const SignUpScreen = () => {
         const errorMessage = error.message;
         console.log(errorMessage);
         // ..
+        errorMessage == "Firebase: Error (auth/invalid-email)."
+          ? setErrorDisplay("Wrong email format")
+          : setErrorDisplay("Password should be at least 6 characters");
+        console.log(errorMessage == "Firebase: Error (auth/invalid-email).");
       });
   }
+
   return (
     <View>
-      <View className="bg-white w-full h-72 flex justify-end border-b-2 border-green-200">
+      <View className="bg-white w-full h-72 flex justify-end border-b-2 border-[#5cab44]">
         <View>
           <Image
             source={{
@@ -138,6 +147,13 @@ const SignUpScreen = () => {
               <EyeSlashIcon size={30} color="gray" />
             </TouchableOpacity>
           </View>
+          <Text className="text-red-500 text-sm text-center">
+            {errorDisplay == "Wrong email format" ||
+            "Password should be at least 6 characters"
+              ? errorDisplay
+              : null}
+          </Text>
+
           <TouchableOpacity
             onPress={signUp}
             className="bg-[#5cab44]  rounded-3xl px-4 w-[80%] mx-[10%] my-[5%] h-12 flex justify-center"

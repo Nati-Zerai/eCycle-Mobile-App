@@ -6,13 +6,21 @@ import {
   ShoppingCartIcon,
 } from "react-native-heroicons/solid";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
+import { activeTabRedux, setActiveTabRedux } from "../features/footerSlice";
 
 const Footer = () => {
   const navigation = useNavigation();
 
-  const [activeTab, setActiveTab] = useState("Home");
+  // const [activeTab, setActiveTab] = useState("Home");
+  const activeTab = useSelector(activeTabRedux);
+  const dispatch = useDispatch();
+  const setActiveTab = (page) => {
+    dispatch(setActiveTabRedux(page));
+  };
+
   return (
-    <View className="bg-white flex-row item-center justify-between px-12 py-2">
+    <View className="bg-white flex-row item-center justify-between px-12 py-2 absolute bottom-0 w-full">
       <TouchableOpacity
         onPress={() => [setActiveTab("Home"), navigation.navigate("Home")]}
       >

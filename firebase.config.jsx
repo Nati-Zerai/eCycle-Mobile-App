@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 import { getAuth } from "firebase/auth";
+import { GoogleAuthProvider } from "firebase/auth";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -25,3 +26,6 @@ export const db = getDatabase(app);
 
 // Initialilze Authentication
 export const auth = getAuth(app);
+
+// Initialize Google
+export const provider = new GoogleAuthProvider(app);

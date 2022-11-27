@@ -1,4 +1,11 @@
-import { View, Text, Image, TouchableOpacity, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  ScrollView,
+  Keyboard,
+} from "react-native";
 import {
   ArrowLeftIcon,
   MinusCircleIcon,
@@ -15,6 +22,7 @@ import {
 } from "../features/basketSlice";
 import { urlFor } from "../sanity";
 import { TextInput } from "react-native-gesture-handler";
+import Footer from "../components/Footer";
 
 const RepairFillScreen = () => {
   const navigation = useNavigation();
@@ -59,7 +67,24 @@ const RepairFillScreen = () => {
   ];
   //  number plus minus
   let [amount, setAmount] = useState(1);
+  const [footState, setFootState] = useState(0);
 
+  // Keyboard
+  const [keyboardStatus, setKeyboardStatus] = useState(undefined);
+
+  useEffect(() => {
+    const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+      setKeyboardStatus("Keyboard Shown");
+    });
+    const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+      setKeyboardStatus("Keyboard Hidden");
+    });
+
+    return () => {
+      showSubscription.remove();
+      hideSubscription.remove();
+    };
+  }, []);
   return (
     <>
       <ScrollView>
@@ -86,7 +111,9 @@ const RepairFillScreen = () => {
         </View>
 
         {/* Details Area */}
-        <Text className="text-xl mx-7 mt-5">Fill Device Details</Text>
+        <Text className="text-xl mx-7 mt-5">
+          Fill Device Details {keyboardStatus}
+        </Text>
         <View className="rounded-xl mx-7 my-3 bg-white">
           <View className="w-96 pb-4 px-4 self-center flex"></View>
 
@@ -122,7 +149,7 @@ const RepairFillScreen = () => {
 
           <View className="pb-2 px-4">
             <Text className="mb-1">Description</Text>
-            <View className="z-300">
+            <View>
               <TextInput
                 maxLength={20}
                 className="border h-20 rounded-lg"
@@ -169,6 +196,7 @@ const RepairFillScreen = () => {
           </TouchableOpacity>
         </View>
       </ScrollView>
+      {keyboardStatus == "Keyboard Shown" ? null : <Footer />}
     </>
   );
 };

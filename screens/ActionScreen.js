@@ -6,9 +6,10 @@ import {
   SafeAreaView,
   ScrollView,
   TouchableOpacity,
+  Keyboard,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import {
   ArrowRightIcon,
   MagnifyingGlassIcon,
@@ -18,22 +19,21 @@ import SearchFilter from "../components/SearchFilter";
 import DevicesColumn from "../components/DevicesColumn";
 import SearchFilterCard from "../components/SearchFilterCards";
 import client from "../sanity";
+import Footer from "../components/Footer";
 
 const ActionScreen = () => {
   const navigation = useNavigation();
-
-  const {
-    params: { check },
-  } = useRoute();
-
-  const [selector, setSelector] = useState("Accessories");
+  // const hello = "Mo*"
+  const [selector, setSelector] = useState("All");
+  const [searchText, setSearchText] = useState("");
 
   const [items, setitems] = useState([
-    { key: "1", type: "Accessories", color: "white" },
-    { key: "2", type: "Kitchen Appliances", color: "white" },
-    { key: "3", type: "Smart Devices", color: "white" },
-    { key: "4", type: "Home Electronics", color: "white" },
-    { key: "5", type: " Kids Toy", color: "white" },
+    { key: "1", type: "All", color: "white" },
+    { key: "2", type: "Accessories", color: "white" },
+    { key: "3", type: "Kitchen Appliances", color: "white" },
+    { key: "4", type: "Smart Devices", color: "white" },
+    { key: "5", type: "Home Electronics", color: "white" },
+    { key: "6", type: " Kids Toy", color: "white" },
   ]);
   const [electronics, setelectronics] = useState([]);
 
@@ -58,6 +58,49 @@ const ActionScreen = () => {
       });
   }, []);
 
+  function hundleFetch() {
+    if (selector == "All") {
+      return electronics
+        .filter((electronic) => {
+          // console.log(searchText ? searchText : "nothing")
+          // console.log(electronic.name.includes(searchText) && electronic)
+          if (searchText == "") {
+            return electronic;
+          } else if (electronic.name.includes("Ma")) {
+            // console.log("hello")
+            return electronic;
+          }
+        })
+        .map((electronic) => (
+          <View key={electronic._id}>
+            <DevicesColumn
+              id={electronic._id}
+              imgUrl={electronic.image.asset._ref}
+              title={electronic.name}
+              genre={electronic.genre.genre}
+              short_description={electronic.short_description}
+              estimatedPoint={electronic.estimatedPoint}
+            />
+          </View>
+        ));
+    } else {
+      return electronics
+        .filter((electronic) => electronic.genre.genre == selector)
+        .map((electronic) => (
+          <View key={electronic._id}>
+            <DevicesColumn
+              id={electronic._id}
+              imgUrl={electronic.image.asset._ref}
+              title={electronic.name}
+              genre={electronic.genre.genre}
+              short_description={electronic.short_description}
+              estimatedPoint={electronic.estimatedPoint}
+            />
+          </View>
+        ));
+    }
+  }
+
   function hundlePress(item) {
     setSelector(item.type);
     (item) => {
@@ -65,9 +108,25 @@ const ActionScreen = () => {
     };
   }
 
+  // Keyboard
+  const [keyboardStatus, setKeyboardStatus] = useState(undefined);
+
+  useEffect(() => {
+    const showSubscription = Keyboard.addListener("keyboardDidShow", () => {
+      setKeyboardStatus("Keyboard Shown");
+    });
+    const hideSubscription = Keyboard.addListener("keyboardDidHide", () => {
+      setKeyboardStatus("Keyboard Hidden");
+    });
+
+    return () => {
+      showSubscription.remove();
+      hideSubscription.remove();
+    };
+  }, []);
   return (
     <>
-      <View className="mb-40">
+      <View className="mb-40 pb-16">
         <View className="bg-[#7cc464] pt-12 flex-row pb-3 items-center space-x-2 px-4">
           <Image
             source={{
@@ -88,6 +147,10 @@ const ActionScreen = () => {
             <TextInput
               placeholder="Search Any Electronic Items ..."
               keyboardType="default"
+              value={searchText}
+              onChange={(e) => {
+                setSearchText(e);
+              }}
             />
           </View>
         </View>
@@ -121,27 +184,14 @@ const ActionScreen = () => {
           </ScrollView>
         </SafeAreaView>
 
-        <ScrollView>
+        <ScrollView className="mb-12">
           <View className="flex-row items-center justify-between mt-1 px-4">
             <Text className="font-bold text-lg">Popular Devices</Text>
           </View>
-          {electronics
-            .filter((electronic) => electronic.genre.genre == selector)
-            .map((electronic) => (
-              <View key={electronic._id}>
-                <DevicesColumn
-                  id={electronic._id}
-                  imgUrl={electronic.image.asset._ref}
-                  title={electronic.name}
-                  genre={electronic.genre.genre}
-                  short_description={electronic.short_description}
-                  estimatedPoint={electronic.estimatedPoint}
-                  check={check}
-                />
-              </View>
-            ))}
+          {hundleFetch()}
         </ScrollView>
       </View>
+      {keyboardStatus == "Keyboard Shown" ? null : <Footer />}
     </>
   );
 };

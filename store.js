@@ -3,6 +3,7 @@ import basketReducer from "./features/basketSlice";
 import cartReducer from "./features/cartSlice";
 import historyReducer from "./features/historySlice";
 import credentialReducer from "./features/credentialSlice";
+import footerReducer from "./features/footerSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     cart: cartReducer,
     history: historyReducer,
     credential: credentialReducer,
+    footer: footerReducer,
   },
 });

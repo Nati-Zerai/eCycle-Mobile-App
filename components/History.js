@@ -22,15 +22,15 @@ const History = ({
 
   return (
     <View>
-      <View className="bg-white border border-gray-300">
+      <View className="bg-white border border-gray-300 rounded-3xl mb-1">
         <View className="flex-row">
           <Image
             source={{
               uri: urlFor(imgUrl).url(),
             }}
-            className="h-20 w-20 self-center bg-gray-300 p-4 ml-6 rounded-full"
+            className="h-24 w-24 self-center bg-gray-300 ml-4 rounded-full"
           />
-          <View className="flex flex-1 pl-6 py-4">
+          <View className="flex flex-1 pl-4 py-4">
             <Text className="text-xs text-gray-600">{genre}</Text>
             <Text className="font-bold text-lg">{title}</Text>
             <Text className="text-sm">{short_description}</Text>
