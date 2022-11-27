@@ -3,12 +3,11 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import { XCircleIcon } from "react-native-heroicons/solid";
 import { ShoppingCartIcon } from "react-native-heroicons/outline";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addToCart,
-  selectCartItems,
-  selectCartItemsWithId,
-} from "../features/cartSlice";
-import { useEffect } from "react";
+import { addToCart, selectCartItems } from "../features/cartSlice";
+import { useEffect, useMemo } from "react";
+import { child, onValue, push, ref, set } from "firebase/database";
+import { db } from "../firebase.config.jsx";
+import { selectCredential } from "../features/credentialSlice";
 
 const ContinueToCartScreen = () => {
   const navigation = useNavigation();
@@ -27,6 +26,7 @@ const ContinueToCartScreen = () => {
   // Redux
   const items = useSelector(selectCartItems);
   const dispatch = useDispatch();
+  const selectUserCredential = useSelector(selectCredential);
 
   useEffect(() => {
     dispatch(
@@ -42,9 +42,41 @@ const ContinueToCartScreen = () => {
     );
   }, [dispatch]);
 
-  // console.log("************************************");
-  // console.log(items);
-  // console.log("************************************");
+  //firebase
+  function writeUserCartFirebase(
+    userId,
+    itemId,
+    imgUrl,
+    title,
+    genre,
+    amount,
+    short_description,
+    estimateTotal
+  ) {
+    const newKey = push(child(ref(db), "cart/" + userId)).key;
+    set(ref(db, "cart/" + userId + "/" + newKey), {
+      userId: userId,
+      itemId: itemId,
+      imgUrl: imgUrl,
+      title: title,
+      genre: genre,
+      amount: amount,
+      short_description: short_description,
+      estimateTotal: estimateTotal,
+    });
+  }
+  useMemo(() => {
+    writeUserCartFirebase(
+      selectUserCredential[0].userId,
+      id,
+      imgUrl,
+      title,
+      genre,
+      amount,
+      short_description,
+      estimateTotal
+    );
+  }, []);
 
   return (
     <View className="absolute bottom-0 h-50 w-full">

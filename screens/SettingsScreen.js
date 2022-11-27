@@ -9,9 +9,31 @@ import {
   UserIcon,
 } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
+import { auth } from "../firebase.config.jsx";
+import { signOut } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { addToCredential } from "../features/credentialSlice.js";
 
 const SettingsScreen = () => {
   const navigation = useNavigation();
+
+  //Firebase
+  function signOut() {
+    signOut(auth)
+      .then(() => {
+        // Sign-out successful.
+      })
+      .catch((error) => {
+        // An error happened.
+      });
+  }
+
+  // Empty user info Redux
+  const dispatch = useDispatch();
+  const addItemToCredential = (aa) => {
+    dispatch(addToCredential(aa));
+  };
+
   return (
     <View>
       {/* Header text with logo */}
@@ -89,7 +111,12 @@ const SettingsScreen = () => {
           </View>
           <ChevronRightIcon size={20} color="#000000" />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => [navigation.navigate("Login")]}>
+        <TouchableOpacity
+          onPress={() => {
+            addItemToCredential([]);
+            navigation.navigate("Login");
+          }}
+        >
           <Text className="text-red-600 text-xl font-semibold p-6">
             LOG OUT
           </Text>

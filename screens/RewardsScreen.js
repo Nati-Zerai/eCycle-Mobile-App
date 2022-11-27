@@ -12,11 +12,27 @@ import UpdatesRow from "../components/UpdatesRow";
 import PartnersRow from "../components/PartnersRow";
 import { useSelector } from "react-redux";
 import { selectHistoryPointsTotal } from "../features/historySlice";
+import { selectCredential } from "../features/credentialSlice";
+import { onValue, ref } from "firebase/database";
+import { db } from "../firebase.config";
 
 const RewardsScreen = () => {
   const navigation = useNavigation();
 
   const [rewardstype, setRewardstype] = useState([]);
+
+  const [pointsFromFirebase, setPointsFromFirebase] = useState(0);
+
+  //redux
+  const selectUserCredential = useSelector(selectCredential);
+  // read firebase
+  function readCredentialFirebase(userId) {
+    const starCountRef = ref(db, "users/" + userId);
+    onValue(starCountRef, (snapshot) => {
+      const data = snapshot.val();
+      setPointsFromFirebase(data.totalHistoryPoints);
+    });
+  }
 
   useEffect(() => {
     client
@@ -31,10 +47,9 @@ const RewardsScreen = () => {
       )
       .then((data) => {
         setRewardstype(data);
+        readCredentialFirebase(selectUserCredential[0].userId);
       });
   }, []);
-  //redux
-  const totalHistoryPoints = useSelector(selectHistoryPointsTotal);
 
   return (
     <View>
@@ -63,7 +78,7 @@ const RewardsScreen = () => {
               </View>
               <View>
                 <Text className="font-bold text-3xl">
-                  {totalHistoryPoints} points!
+                  {pointsFromFirebase} points!
                 </Text>
                 <Text className="text-base text-orange-600">How it works?</Text>
               </View>
@@ -72,9 +87,9 @@ const RewardsScreen = () => {
           <View className="py-4 px-8 bg-white border border-gray-300 flex-row rounded-2xl mx-2 mt-1">
             <View>
               <Text className="font-semibold text-lg">
-                {totalHistoryPoints} Points
+                {pointsFromFirebase} Points
               </Text>
-              <Text>No Points earned</Text>
+              <Text> My Points earned</Text>
             </View>
             <View className="ml-20 items-center self-center">
               <TouchableOpacity

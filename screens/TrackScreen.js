@@ -1,13 +1,19 @@
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { XMarkIcon } from "react-native-heroicons/solid";
 import { SafeAreaView } from "react-native-safe-area-context";
 import * as Progress from "react-native-progress";
 import MapView, { Marker } from "react-native-maps";
+import { onValue, ref } from "firebase/database";
+import { db } from "../firebase.config";
+import { selectCredential } from "../features/credentialSlice";
+import { useSelector } from "react-redux";
 
 const TrackScreen = () => {
   const navigation = useNavigation();
+
+  const selectUserCredential = useSelector(selectCredential);
 
   return (
     <View className="bg-[#7cc464] flex-1">
@@ -47,8 +53,8 @@ const TrackScreen = () => {
 
       <MapView
         initialRegion={{
-          latitude: 15.3229,
-          longitude: 38.9251,
+          latitude: selectUserCredential[0].location.lat,
+          longitude: selectUserCredential[0].location.long,
           latitudeDelta: 0.0455,
           longitudeDelta: 0.0455,
         }}
@@ -57,8 +63,8 @@ const TrackScreen = () => {
       >
         <Marker
           coordinate={{
-            latitude: 38.9251,
-            longitude: 38.9251,
+            latitude: selectUserCredential[0].location.lat,
+            longitude: selectUserCredential[0].location.long,
           }}
           title="Electronic Recyle"
           description="Recycling a used mobile phone"
@@ -76,7 +82,7 @@ const TrackScreen = () => {
             className="h-12 w-12 bg-gray-300 p-4 rounded-full ml-5"
           />
           <View className="flex-1">
-            <Text className="text-lg">Nati Zerai</Text>
+            <Text className="text-lg">Jonny Davis</Text>
             <Text className="text-gray-400 ">Your Rider</Text>
           </View>
           <Text className="text-[#7cc464] text-lg mr-5 font-bold">Call</Text>

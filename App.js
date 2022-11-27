@@ -25,7 +25,9 @@ import CheckoutScreen from "./screens/CheckoutScreen";
 import PreparingOrderScreen from "./screens/PreparingOrderScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RewardsScreen from "./screens/RewardsScreen";
-
+import SignUpScreen from "./screens/SignUpScreen";
+import AddAddressScreen from "./screens/AddAddressScreen";
+import ChangeAddressScreen from "./screens/ChangeAddressScreen";
 import { Provider } from "react-redux";
 import { store } from "./store";
 
@@ -40,6 +42,8 @@ export default function App() {
       <Provider store={store}>
         <TailwindProvider>
           <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="SignUp" component={SignUpScreen} />
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="Updates" component={UpdatesScreen} />
             <Stack.Screen name="Action" component={ActionScreen} />
@@ -99,8 +103,20 @@ export default function App() {
               component={PreparingOrderScreen}
               options={{ presentation: "fullScreenModal", headerShown: false }}
             />
-            <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Rewards" component={RewardsScreen} />
+            <Stack.Screen name="AddAddress" component={AddAddressScreen} />
+            <Stack.Screen
+              name="ChangeAddress"
+              component={ChangeAddressScreen}
+              options={{
+                presentation: "transparentModal",
+                headerShown: false,
+                gestureEnabled: true,
+                gestureResponseDistance: 1000,
+                cardOverlayEnabled: true,
+                ...TransitionPresets.ModalPresentationIOS,
+              }}
+            />
           </Stack.Navigator>
 
           <Footer />

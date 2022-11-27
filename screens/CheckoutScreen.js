@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
-import React, { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
-import { XCircleIcon } from "react-native-heroicons/solid";
+import React, { useEffect, useState } from "react";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { MapPinIcon, XCircleIcon } from "react-native-heroicons/solid";
 import Currency from "react-currency-formatter";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -11,23 +11,79 @@ import {
 } from "../features/cartSlice";
 import { addToHistory, selectHistoryItems } from "../features/historySlice";
 import { urlFor } from "../sanity";
+import { child, onValue, push, ref, remove, set } from "firebase/database";
+import { db } from "../firebase.config.jsx";
+import { selectCredential } from "../features/credentialSlice";
 
 const CheckoutScreen = () => {
   const navigation = useNavigation();
+  const {
+    params: { place },
+  } = useRoute();
+
   // Redux
   const items = useSelector(selectCartItems);
   const cartPointsTotal = useSelector(selectCartPointsTotal);
-  const historyItems = useSelector(selectHistoryItems);
   const dispatch = useDispatch();
+  const selectUserCredential = useSelector(selectCredential);
 
+  // Redux and firebase add history
   const addItemToHistory = () => {
     if (!items.length > 0) return;
     items.map((item) => dispatch(addToHistory(item)));
+    items.map((item) =>
+      writeHistoryFirebase(
+        selectUserCredential[0].userId,
+        item.id,
+        item.imgUrl,
+        item.title,
+        item.genre,
+        item.amount,
+        item.short_description,
+        item.estimateTotal
+      )
+    );
   };
-  // console.log("Cart Items====================================");
-  // console.log(items);
-  // console.log("History Items----------------------");
-  // console.log(historyItems);
+
+  // function write history firebase
+  function writeHistoryFirebase(
+    userId,
+    itemId,
+    imgUrl,
+    title,
+    genre,
+    amount,
+    short_description,
+    estimateTotal
+  ) {
+    const newKey = push(child(ref(db), "history/" + userId)).key;
+    set(ref(db, "history/" + userId + "/" + newKey), {
+      userId: userId,
+      itemId: itemId,
+      imgUrl: imgUrl,
+      title: title,
+      genre: genre,
+      amount: amount,
+      short_description: short_description,
+      estimateTotal: estimateTotal,
+    });
+  }
+  const [pointsFromFirebase, setPointsFromFirebase] = useState(0);
+
+  // read function firebase and set points
+  function readCredentialFirebase(userId) {
+    const starCountRef = ref(db, "users/" + userId);
+    onValue(starCountRef, (snapshot) => {
+      const data = snapshot.val();
+      setPointsFromFirebase(data.totalHistoryPoints);
+    });
+  }
+
+  // function delete cart, read credential,
+  function deleteCartFirebase() {
+    remove(ref(db, "cart/" + selectUserCredential[0].userId));
+    readCredentialFirebase(selectUserCredential[0].userId);
+  }
 
   return (
     <View className="flex-1 bg-white ">
@@ -46,15 +102,16 @@ const CheckoutScreen = () => {
             <XCircleIcon color="#7cc464" height={50} width={50} />
           </TouchableOpacity>
         </View>
-        <View className="flex-row items-center space-x-4 px-4 py-3 bg-white my-5">
-          <Image
-            source={{
-              uri: "https://links.papareact.com/gn7",
+        <View className="flex-row items-center space-x-1 px-4 py-3 bg-white my-5">
+          <MapPinIcon color="black" opacity={0.4} size={36} />
+          <Text className="flex-1">
+            Address: {selectUserCredential[0].location.place}
+          </Text>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("AddAddress");
             }}
-            className="h-7 w-7 bg-gray-300 p-4 rounded-full"
-          />
-          <Text className="flex-1">Deliver in 50-75 min</Text>
-          <TouchableOpacity>
+          >
             <Text className="text-[#7cc464]"> Change</Text>
           </TouchableOpacity>
         </View>
@@ -98,7 +155,10 @@ const CheckoutScreen = () => {
             <Text className="font-extrabold">{cartPointsTotal} points</Text>
           </View>
           <TouchableOpacity
-            onPress={() => navigation.navigate("PreparingOrder")}
+            onPressIn={deleteCartFirebase}
+            onPress={() =>
+              navigation.navigate("PreparingOrder", { pointsFromFirebase })
+            }
             onPressOut={addItemToHistory}
             className="rounded-lg bg-[#7cc464] p-4"
           >
