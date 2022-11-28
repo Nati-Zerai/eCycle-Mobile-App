@@ -3,6 +3,8 @@ import React from "react";
 import { ChevronRightIcon, StarIcon } from "react-native-heroicons/outline";
 import { useNavigation } from "@react-navigation/native";
 import { urlFor } from "../sanity";
+import { useSelector } from "react-redux";
+import { checkRedux } from "../features/checkSlice";
 
 const DevicesColumn = ({
   id,
@@ -11,14 +13,13 @@ const DevicesColumn = ({
   genre,
   short_description,
   estimatedPoint,
-  check,
 }) => {
   const navigation = useNavigation();
-
+  const checkReduxNow = useSelector(checkRedux);
   return (
     <TouchableOpacity
       onPress={() => {
-        check == 0
+        checkReduxNow == 0
           ? navigation.navigate("FillDeviceInfo", {
               id,
               imgUrl,

@@ -9,7 +9,7 @@ import {
   Keyboard,
 } from "react-native";
 import React, { useEffect, useState } from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import {
   ArrowRightIcon,
   MagnifyingGlassIcon,
@@ -23,6 +23,7 @@ import Footer from "../components/Footer";
 
 const ActionScreen = () => {
   const navigation = useNavigation();
+
   // const hello = "Mo*"
   const [selector, setSelector] = useState("All");
   const [searchText, setSearchText] = useState("");

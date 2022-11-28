@@ -2,14 +2,25 @@ import { View, Text, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import { ArrowRightCircleIcon } from "react-native-heroicons/solid";
 import { useNavigation } from "@react-navigation/native";
+import { useDispatch, useSelector } from "react-redux";
+import { setCheckRedux } from "../features/checkSlice";
 
 const ButtonsHome = ({ title, img, check }) => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  // const setCheckReduxNow = () => {
+  //   dispatch(
+  //     setCheckRedux(check)
+  //   );
+  // };
 
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate("Action", { check });
+        dispatch(setCheckRedux(check));
+
+        navigation.navigate("Action");
       }}
       className="flex-row bg-[#7cc464] mx-4 mt-4 p-2 px-4 rounded-xl"
     >

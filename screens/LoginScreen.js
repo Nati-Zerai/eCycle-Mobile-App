@@ -40,7 +40,7 @@ const LoginScreen = () => {
     onValue(starCountRef, (snapshot) => {
       const data = snapshot.val();
       addItemToCredential(data);
-      console.log("data prop:   " + data);
+      // console.log("data prop:   " + data);
     });
   }
   // console.log("userId:   " + userId);
@@ -52,7 +52,7 @@ const LoginScreen = () => {
         // Signed in
         const user = userCredential.user;
         // setUserId(user.uid);
-        console.log("userId:   " + user.uid);
+        // console.log("userId:   " + user.uid);
         setErrorDisplay("Correct email/password!");
 
         readCredentialFirebase(user.uid);

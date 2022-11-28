@@ -28,7 +28,7 @@ const EstimateScreen = () => {
   const estimateTotal = useSelector(selectEstimateTotal);
 
   return (
-    <View className="absolute bottom-0 h-72 w-full flex-1 ">
+    <View className="absolute bottom-5 h-72 w-full flex-1 ">
       <View className="bg-gray-100 rounded-t-3xl">
         <View className="px-5 py-3 border-b border-[#7cc464] rounded-t-3xl shadow-xs">
           <View className="items-center">

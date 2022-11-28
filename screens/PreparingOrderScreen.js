@@ -40,8 +40,8 @@ const PreparingOrderScreen = () => {
       navigation.navigate("Track");
     }, 3000);
   }, [dispatch]);
-  console.log("pointsFromFirebase - prep " + pointsFromFirebase);
-  console.log("cartPointsTotalRedux " + cartPointsTotalRedux);
+  // console.log("pointsFromFirebase - prep " + pointsFromFirebase);
+  // console.log("cartPointsTotalRedux " + cartPointsTotalRedux);
 
   return (
     <SafeAreaView className="bg-[#7cc464] flex-1 justify-center items-center">

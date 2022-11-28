@@ -68,7 +68,7 @@ const CartItems = ({
             }}
             className="h-24 w-24 self-center bg-gray-300 rounded-full"
           />
-          <View className="flex flex-1 ml-2">
+          <View className="flex flex-1 ml-4">
             <Text className="text-xs text-gray-600">{genre}</Text>
             <Text className="font-bold text-lg">{title}</Text>
             <Text className="text-sm">{short_description}</Text>
@@ -76,7 +76,7 @@ const CartItems = ({
           </View>
         </View>
         <View>
-          <View className="flex-row">
+          <View className="flex-row mt-1">
             {/* //// */}
             <TouchableOpacity className="flex-row px-2 rounded-xl ml-6 items-center">
               <Text className="p-0.5 text-[#5cab44]">x</Text>

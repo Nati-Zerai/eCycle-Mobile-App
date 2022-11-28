@@ -190,7 +190,7 @@ const RepairFillScreen = () => {
                 estimateTotal: 0,
               });
             }}
-            className="self-center mx-4 mt-4 mb-4 px-8 py-3 rounded-2xl bg-[#7cc464]"
+            className="self-center mx-4 mt-2 mb-4 px-8 py-3 rounded-2xl bg-[#7cc464]"
           >
             <Text className=" font-normal text-xl text-white">Repair</Text>
           </TouchableOpacity>
