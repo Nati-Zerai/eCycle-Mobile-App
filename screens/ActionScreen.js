@@ -34,7 +34,6 @@ const ActionScreen = () => {
     { key: "3", type: "Kitchen Appliances", color: "white" },
     { key: "4", type: "Smart Devices", color: "white" },
     { key: "5", type: "Home Electronics", color: "white" },
-    { key: "6", type: " Kids Toy", color: "white" },
   ]);
   const [electronics, setelectronics] = useState([]);
 

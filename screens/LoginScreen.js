@@ -56,9 +56,12 @@ const LoginScreen = () => {
         setErrorDisplay("Correct email/password!");
 
         readCredentialFirebase(user.uid);
-        setTimeout(() => {
-          navigation.navigate("Home");
-        }, 1500);
+        // setTimeout(() => {
+        //   navigation.navigate("Home");
+        // }, 1500);
+      })
+      .then(() => {
+        navigation.navigate("Home");
       })
       .catch((error) => {
         const errorCode = error.code;

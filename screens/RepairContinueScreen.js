@@ -97,7 +97,9 @@ const RepairContinueScreen = () => {
           </TouchableOpacity>
         </View>
         <View className="bg-white items-center">
-          <Text className="p-2">Our team will contact you soon!</Text>
+          <Text className="p-2 text-gray-500">
+            Our team will contact you soon!
+          </Text>
         </View>
         <View className="flex-row items-center justify-between p-5 my-2 bg-white ">
           <TouchableOpacity

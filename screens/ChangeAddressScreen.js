@@ -11,13 +11,13 @@ const ChangeAddressScreen = () => {
         <Text className="bg-gray-500 text-center h-1 w-16 rounded-3xl"></Text>
 
         {/* Location */}
-        <View>
+        <View className="w-full">
           <Text className="font-bold text-lg p-4">Your Location</Text>
           <View className="flex-row p-4 items-center bg-white">
             <View className="py-2 pr-4">
               <EvilIcons name="location" size={30} color="black" />
             </View>
-            <Text className="flex-wrap w-60">
+            <Text className="flex-1">
               Please set your location where you want us to pick the electronic
               devices from
             </Text>

@@ -5,8 +5,10 @@ import { ArrowRightIcon, UserIcon } from "react-native-heroicons/solid";
 import CartItems from "../components/CartItems";
 import History from "../components/History";
 import {
+  CheckCircleIcon,
   InformationCircleIcon,
   ShoppingCartIcon,
+  TruckIcon,
 } from "react-native-heroicons/outline";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCartItems } from "../features/cartSlice";
@@ -117,7 +119,7 @@ const CartScreen = () => {
           ))}
 
           {/* Track button */}
-          <View className="p-5 ">
+          <View className="items-center">
             <TouchableOpacity
               disabled={listHistoryFirebase == null}
               onPress={() => {
@@ -125,12 +127,13 @@ const CartScreen = () => {
               }}
               className={
                 listHistoryFirebase == null
-                  ? "items-center bg-gray-300 px-2 py-3 rounded-xl mx-4 my-3 "
-                  : "items-center bg-[#7cc464] px-2 py-3 rounded-xl mx-4 my-3 "
+                  ? "flex-row  space-x-2 bg-gray-300 px-28 py-3 rounded-xl mx-4 my-3 "
+                  : "flex-row  space-x-2 bg-[#7cc464] px-28 py-3 rounded-xl mx-4 my-3 "
               }
             >
+              <TruckIcon size={30} color="white" />
               <Text className="text-center text-white text-xl font-semibold">
-                TRACK PICKUP
+                TRACK
               </Text>
             </TouchableOpacity>
           </View>
@@ -173,7 +176,7 @@ const CartScreen = () => {
             </View>
           ))}
         </ScrollView>
-        <View className="absolute bottom-10 flex w-full bg-gray-50">
+        <View className="absolute items-center bottom-10 w-full bg-gray-50">
           <TouchableOpacity
             disabled={itemsCart.length <= 0}
             onPress={() => {
@@ -181,10 +184,11 @@ const CartScreen = () => {
             }}
             className={
               itemsCart.length <= 0
-                ? "items-center bg-gray-300 px-2 py-3 rounded-xl mx-4 my-3 "
-                : "items-center bg-[#7cc464] px-2 py-3 rounded-xl mx-4 my-3 "
+                ? "flex-row  space-x-2 bg-gray-300 px-24 py-3 rounded-xl mx-4 my-3 "
+                : "flex-row  space-x-2 bg-[#7cc464] px-24 py-3 rounded-xl mx-4 my-3 "
             }
           >
+            <CheckCircleIcon size={30} color="white" />
             <Text className="font-semibold text-xl text-white ">CHECKOUT</Text>
           </TouchableOpacity>
         </View>

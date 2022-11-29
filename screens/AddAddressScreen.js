@@ -87,7 +87,7 @@ const AddAddressScreen = () => {
         </View>
         <TouchableOpacity
           onPress={navigation.goBack}
-          className=" flex-row space-x-2 absolute top-32 z-50 left-5 p-2 bg-gray-500 rounded-full "
+          className=" flex-row space-x-2 absolute bottom-56 z-50 left-5 p-2 bg-gray-500 rounded-full "
         >
           <ArrowLeftIcon size={25} color="#ffffff" />
           <Text className="text-white mx-1">Go back</Text>
@@ -117,7 +117,7 @@ const AddAddressScreen = () => {
             }}
           />
         </View>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={styles.confirmButton}
           onPress={() => {
             navigation.navigate("UserProfile");
@@ -125,7 +125,7 @@ const AddAddressScreen = () => {
           }}
         >
           <Text className="text-white self-center text-lg">Confirm</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   );

@@ -39,7 +39,7 @@ const TrackScreen = () => {
               </View>
               <Image
                 source={{
-                  uri: "https://links.papareact.com/fls",
+                  uri: "https://media4.giphy.com/media/WxcbKjRFlLSPykH9gB/giphy.gif?cid=ecf05e47dvhakqyt6s4agq7g8gc0s057kyn1bqoo1xwhis13&rid=giphy.gif&ct=g",
                 }}
                 className="h-20 w-20"
               />
@@ -79,12 +79,12 @@ const TrackScreen = () => {
           <View className="absolute bottom-12 bg-white flex-row items-center space-x-5 pb-2 pt-1 mb-1">
             <Image
               source={{
-                uri: "https://links.papareact.com/wru",
+                uri: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQG6Pq8hCQDr81IqPWZdp-2KDl28ghNrzlaFg&usqp=CAU",
               }}
               className="h-12 w-12 bg-gray-300 p-4 rounded-full ml-5"
             />
             <View className="flex-1 mr-6">
-              <Text className="text-lg">Jonny Davis</Text>
+              <Text className="text-lg">Jonny Smith</Text>
               <Text className="text-gray-400 ">
                 Your Rider will contact you before one day of the pick up
               </Text>

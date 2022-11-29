@@ -28,8 +28,8 @@ const EstimateScreen = () => {
   const estimateTotal = useSelector(selectEstimateTotal);
 
   return (
-    <View className="absolute bottom-5 h-72 w-full flex-1 ">
-      <View className="bg-gray-100 rounded-t-3xl">
+    <View className="absolute bottom-0 h-72 w-full flex-1 ">
+      <View className="bg-gray-100 rounded-t-3xl h-full">
         <View className="px-5 py-3 border-b border-[#7cc464] rounded-t-3xl shadow-xs">
           <View className="items-center">
             <Text className="bg-gray-500 justify-center h-1 w-16 mb-2 rounded-3xl"></Text>
@@ -68,7 +68,7 @@ const EstimateScreen = () => {
           </View>
         </View>
 
-        <View className="p-5 bg-white space-y-4">
+        <View className="px-5 py-3 bg-white space-y-4 h-full">
           <TouchableOpacity
             onPressIn={navigation.goBack}
             onPressOut={removeItemFromBasket}
@@ -83,7 +83,7 @@ const EstimateScreen = () => {
                 estimateTotal,
               });
             }}
-            className="rounded-2xl bg-[#7cc464] p-4 mx-3"
+            className="rounded-2xl bg-[#7cc464] p-4 mx-3 "
           >
             <Text className="text-center text-white text-lg font-bold">
               Add to Cart
